@@ -1,3 +1,16 @@
+# To start deve nakub
+run
+```bash
+npm install
+```
+To install the dependencies and run.
+
+```bash
+npm run dev
+```
+for develop finally, start the project
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
