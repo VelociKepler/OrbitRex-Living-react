@@ -1,10 +1,12 @@
 import React from 'react';
 import AddProduct from '../../components/adminPage/addProduct';
 import ProductItem from '../../components/adminPage/productItem';
+import Navbar from '../../components/adminPage/navBarAdminpage'
 
 function AdminPage() {
   return (
-    <div className="text-center mt-10">
+    <div className="text-center">
+      <Navbar />
       <section id="addProduct" className="mb-12">
         <AddProduct />
       </section>
