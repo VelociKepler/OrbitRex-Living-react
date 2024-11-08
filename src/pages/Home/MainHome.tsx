@@ -1,4 +1,3 @@
-import React from 'react'
 import Image1 from '../../images/Homepage/chair.png'
 import Image2 from '../../images/Homepage/sofa.png'
 import Image3 from '../../images/Homepage/table.png'
@@ -53,7 +52,6 @@ function MainHome() {
                         <h1 className='text-2xl font-bold text-white relative translate-y-3/4 -translate-x-72'>BRAND <br />xx,xxx บาท</h1>
                         </>
                     </div>
-
                 </div>
             </div>
 
