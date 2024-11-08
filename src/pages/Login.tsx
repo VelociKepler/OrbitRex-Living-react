@@ -1,5 +1,7 @@
 import {FormEvent, useState} from "react";
 import UiDesign from "../components/UiDesign.tsx";
+import {Box} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -14,16 +16,9 @@ const Login = () => {
                 <div className="grid grid-cols-2 h-fit border max-w-screen-lg mx-auto">
                     <div className="items-center justify-center w-full px-4 py-2 border-r-2 text-center">
                         <h1 className="font-bold mb-4">Sign in</h1>
-                        <div className="flex w-full mx-auto mt-10 mb-10">
+                        <Box sx={{'& > :not(style)': {m:2, width: '75%'}}}>
                             {/* Line Login Button */}
-                            <button className="flex items-center gap-4 w-fit mx-auto bg-gray-100 p-2 rounded-md">
-                                <img
-                                    className="w-8 h-8"
-                                    src="https://img.icons8.com/?size=100&id=21746&format=png&color=000000"
-                                    alt="Line Logo"
-                                />
-                            </button>
-
+                            <Button>Login</Button>
                             {/* Google Login Button */}
                             <button className="flex items-center gap-4 w-fit mx-auto bg-gray-100 p-2 rounded-md">
                                 <img
@@ -41,7 +36,7 @@ const Login = () => {
                                     alt="Facebook Logo"
                                 />
                             </button>
-                        </div>
+                        </Box>
                         <div className="max-w-screen-lg mx-auto">
                             <form
                                 className="flex flex-col max-w-[300px] mx-auto text-center"
