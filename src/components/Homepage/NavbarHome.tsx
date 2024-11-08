@@ -9,6 +9,7 @@ function NavbarHome() {
         <Link to='/shop'><li>SHOP</li></Link>
         <Link to=''><li>CONTACT</li></Link>
         <Link to=''><li>SERVICES</li></Link>
+        <Link to='/login'><li>LOGIN</li></Link>
       </ul>
       <div className='relative'>
         <input type="text" className='px-5 py-2 rounded-full pr-10 text-black outline-none' placeholder='Search' />
