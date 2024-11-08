@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from '../../images/Homepage/Homepagecover.png'
 import NavbarHome from '../../components/Homepage/NavbarHome';
 import MainHome from './MainHome';
