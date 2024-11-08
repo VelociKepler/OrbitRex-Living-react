@@ -1,5 +1,5 @@
 #Vercel
-This site was built using: [GitHub Pages](https://vercel.com/chatpong-deepets-projects/orbit-rex-living).
+This site was built using: [OrbitRex Living](https://vercel.com/chatpong-deepets-projects/orbit-rex-living).
 
 # To start deve nakub
 run
