@@ -1,4 +1,5 @@
 import {FormEvent, useState} from "react";
+import UiDesign from "../components/UiDesign.tsx";
 
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -8,6 +9,7 @@ const Login = () => {
     };
     return (
         <>
+            <UiDesign/>
             {isSignIn ? (
                 <div className="grid grid-cols-2 h-fit border max-w-screen-lg mx-auto">
                     <div className="items-center justify-center w-full px-4 py-2 border-r-2 text-center">
