@@ -52,7 +52,6 @@ function MainHome() {
                         <h1 className='text-2xl font-bold text-white relative translate-y-3/4 -translate-x-72'>BRAND <br />xx,xxx บาท</h1>
                         </>
                     </div>
-
                 </div>
             </div>
 
