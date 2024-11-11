@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 function NavbarHome() {
   return (
     <nav className='w-full h-20 flex items-center justify-around z-10 text-white'>
-      <div className='text-3xl font-bold'>OrbitRex Living</div>
+      <Link to='/'><div className='text-3xl font-bold'>OrbitRex Living</div></Link>
       <ul className='flex gap-10'>
         <Link to='/'><li>HOME</li></Link>
         <Link to='/shop'><li>SHOP</li></Link>
