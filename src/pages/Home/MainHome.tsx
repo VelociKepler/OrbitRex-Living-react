@@ -23,23 +23,23 @@ function MainHome() {
         <div >
 
             {/* Main Section 1 */}
-            <div className='relative -top-20'>
-                <div className='h-70 flex flex-wrap justify-center gap-36 my-10 mx-20'>
-                    <div className='my-10 py-14'>
+            <div className='relative -top-20 '>
+                <div className='h-70 flex flex-wrap justify-center gap-36 my-20 mx-20'>
+                    <div className='p-10 flex flex-col items-center justify-center'>
                         <h1 className='text-2xl font-bold'>Shop <br />by categories</h1>
-                        <button className='font-bold mt-24'>ALL CATEGORIES <i className="fa-duotone fa-solid fa-play text-sm"></i></button>
+                        <button className='font-bold mt-24 border-b-2 border-transparent hover:border-orange-500'>ALL CATEGORIES <i className="fa-duotone fa-solid fa-play text-sm"></i></button>
                     </div>
-                    <Link to='' className='my-10 h-60'>
-                        <img src={Image1} alt="" className='h-52 py-10' />
-                        <h1 className='text-2xl font-bold'>Chair</h1>
+                    <Link to='' className='hover:scale-110 transition-all duration-300'>
+                        <img src={Image1} alt="" className='h-96 py-10' />
+                        <h1 className='text-2xl text-center font-bold'>Chair</h1>
                     </Link>
-                    <Link to='' className='my-10 h-60'>
-                        <img src={Image2} alt="" className='h-52 py-12' />
-                        <h1 className='text-2xl font-bold'>Sofa</h1>
+                    <Link to='' className='hover:scale-110 transition-all duration-300'>
+                        <img src={Image2} alt="" className='h-96 py-12' />
+                        <h1 className='text-2xl text-center font-bold'>Sofa</h1>
                     </Link>
-                    <Link to='' className='my-10 h-60'>
-                        <img src={Image3} alt="" className='h-52 py-10' />
-                        <h1 className='text-2xl font-bold'>Table</h1>
+                    <Link to='' className='hover:scale-110 transition-all duration-300'>
+                        <img src={Image3} alt="" className='h-96 py-10' />
+                        <h1 className='text-2xl text-center font-bold'>Table</h1>
                     </Link>
                 </div>
             </div>
@@ -70,10 +70,10 @@ function MainHome() {
             {/* Main Section 3   */}
             <div className='mt-10'>
                 <div className='mx-72 flex flex-row justify-center gap-5'>
-                    <Link to=''>
+                    <Link to='' className='hover:scale-110 transition-all duration-300'>
                         <img src={Image7} alt="" className='h-full' />
                     </Link>
-                    <Link to=''>
+                    <Link to='' className='hover:scale-110 transition-all duration-300'>
                         <img src={Image8} alt="" className='h-full' />
                     </Link>
                 </div>
