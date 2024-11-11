@@ -14,7 +14,7 @@ import Image13 from '../../images/Homepage/service.png'
 import Image14 from '../../images/Homepage/home-solution-item-3.png'
 import { Link } from 'react-router-dom'
 import MarqueeSlider from '../../components/Homepage/MarqueeSlider'
-import Footer from '../../components/footer'
+import Footer from '../../components/Footer'
 
 function MainHome() {
     return (
@@ -23,7 +23,7 @@ function MainHome() {
         <div >
 
             {/* Main Section 1 */}
-            <div className='relative -top-20 '>
+            <div className='relative -top-20'>
                 <div className='h-70 flex flex-wrap justify-center gap-36 my-20 mx-20'>
                     <div className='p-10 flex flex-col items-center justify-center'>
                         <h1 className='text-2xl font-bold'>Shop <br />by categories</h1>
@@ -31,15 +31,15 @@ function MainHome() {
                     </div>
                     <Link to='' className='hover:scale-110 transition-all duration-300'>
                         <img src={Image1} alt="" className='h-96 py-10' />
-                        <h1 className='text-2xl text-center font-bold'>Chair</h1>
+                        <h1 className='text-2xl text-center font-bold'>CHAIR</h1>
                     </Link>
                     <Link to='' className='hover:scale-110 transition-all duration-300'>
                         <img src={Image2} alt="" className='h-96 py-12' />
-                        <h1 className='text-2xl text-center font-bold'>Sofa</h1>
+                        <h1 className='text-2xl text-center font-bold'>SOFA</h1>
                     </Link>
                     <Link to='' className='hover:scale-110 transition-all duration-300'>
                         <img src={Image3} alt="" className='h-96 py-10' />
-                        <h1 className='text-2xl text-center font-bold'>Table</h1>
+                        <h1 className='text-2xl text-center font-bold'>TABLE</h1>
                     </Link>
                 </div>
             </div>
