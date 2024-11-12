@@ -1,3 +1,6 @@
+#Vercel
+This site was built using: [OrbitRex Living](https://orbit-rex-living.vercel.app/).
+
 # To start deve nakub
 run
 ```bash
