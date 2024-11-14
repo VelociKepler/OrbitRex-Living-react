@@ -14,10 +14,10 @@ const Login = () => {
   return (
     <>
       {isSignIn ? (
-        <div className="grid grid-cols-2 h-fit border max-w-screen-lg mx-auto">
-          <div className="items-center justify-center w-full px-4 py-2 border-r-2 text-center">
+        <div className="grid grid-cols-2 h-screen max-w-screen-lg mx-auto">
+          <div className="items-center justify-center w-full px-4 py-2 border-r-2 text-center my-auto">
             <h1 className="font-bold mb-4">Sign in</h1>
-            <div className="w-">
+            <div>
               {/* Line Login Button */}
               <Button>
                 <FacebookIcon></FacebookIcon>
@@ -56,40 +56,39 @@ const Login = () => {
                     autoComplete="current-password"
                   />
                   <Button variant="contained" color="secondary">
-                    Contained
+                    Sign in
                   </Button>
                 </Box>
-                <button className="primary-bnt">Sign-in</button>
               </form>
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center h-full px-8">
-            <h1>Slogan</h1>
-            <p className="text-center my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusantium asperiores assumenda cupiditate eius ipsum minima
-              mollitia nulla perferendis quam, unde?
+          <div className = " flex flex-col justify-center items-center h-full px-8">
+            <p className = "text-center my-5">"Style Your Space, Simplify Your Life.
+              Discover Furniture That Feels Like Home."
             </p>
-            <button className="outline-bnt" onClick={() => setIsSignIn(false)}>
+            <button
+                className = "outline-bnt"
+                onClick = {() => setIsSignIn(false)}
+            >
               Sign-up
             </button>
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-2 h-fit border max-w-screen-lg mx-auto">
-          <div className="flex flex-col justify-center items-center h-full px-8">
-            <h1 className="font-bold">Sign Up</h1>
-            <p className="text-center my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusantium asperiores assumenda cupiditate eius ipsum minima
-              mollitia nulla perferendis quam, unde?
-            </p>
-            <button className="outline-bnt" onClick={() => setIsSignIn(true)}>
-              Sign-in
-            </button>
-          </div>
-          <div className="items-center justify-center w-full px-4 py-2 text-center">
-            <div className="max-w-screen-lg mx-auto">
+          <div className = "grid grid-cols-2 h-screen max-w-screen-lg mx-auto">
+            <div className = "flex flex-col justify-center items-center px-8">
+              <p className = "text-center my-5">"Style Your Space, Simplify Your Life.
+                Discover Furniture That Feels Like Home."
+              </p>
+              <button
+                  className = "outline-bnt"
+                  onClick = {() => setIsSignIn(true)}
+              >
+                Sign-in
+              </button>
+            </div>
+            <div className = "items-center justify-center w-full px-4 py-2 text-center my-auto">
+              <div className = "max-w-screen-lg mx-auto border-l-2">
               <form
                 className="flex flex-col max-w-[300px] mx-auto"
                 onSubmit={handleSubmit}
@@ -119,7 +118,7 @@ const Login = () => {
                     autoComplete="current-password"
                   />
                   <Button variant="contained" color="secondary">
-                    Contained
+                    Sign up
                   </Button>
                 </Box>
               </form>
