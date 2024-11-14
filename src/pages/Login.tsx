@@ -4,6 +4,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Button, Divider, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
+import Navbar from "../components/Navbar";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -13,6 +14,7 @@ const Login = () => {
   };
   return (
     <>
+      <Navbar />
       {isSignIn ? (
         <div className="grid grid-cols-2 h-screen max-w-screen-lg mx-auto">
           <div className="items-center justify-center w-full px-4 py-2 border-r-2 text-center my-auto">
