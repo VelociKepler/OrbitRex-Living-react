@@ -32,7 +32,9 @@ function NavbarHome() {
 
       {/* tablet */}
       <nav className='lg:hidden'>
+
         <div className='h-20 flex items-center justify-center gap-20 z-10 text-white mx-5'>
+
           <Link to='/'><div className='text-2xl font-bold'>OrbitRex Living</div></Link>
           <div className='relative'>
             <input type="text" className='px-5 py-3 rounded-full w-60 first: text-black outline-none' placeholder='Search' />
@@ -42,7 +44,9 @@ function NavbarHome() {
             <Link to=''><i className="fa-solid fa-basket-shopping text-4xl"></i></Link>
             <button><i className="fa-solid fa-bars text-4xl"></i></button>
           </div>
+          
         </div>
+
       </nav>
 
 
