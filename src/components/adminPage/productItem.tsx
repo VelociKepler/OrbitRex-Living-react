@@ -12,7 +12,10 @@ function ProductItem(){
                 <div></div>
                 <div></div>
                 <div className='font-thin'>catagorized</div>
-                <div></div>
+                <div className="flex flex-col p-5">
+                    <button className="font-thin hover:text-orange-500 ">edit</button>
+                    <button className=" bg-red-500 text-white  rounded-xl hover:bg-red-700">delete</button>
+                </div>
             </div>
         </div>
     );
