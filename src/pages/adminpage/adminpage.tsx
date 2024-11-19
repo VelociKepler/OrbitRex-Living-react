@@ -1,4 +1,3 @@
-import React from 'react';
 import AddProduct from '../../components/adminPage/addProduct';
 import ProductItem from '../../components/adminPage/productItem';
 import Navbar from '../../components/Navbar';
