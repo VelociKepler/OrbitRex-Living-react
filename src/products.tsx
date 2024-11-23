@@ -162,6 +162,170 @@ export const products = [
       thickness: 17,
     },
   },
+  {
+    _id: 6,
+    name: "ADDE อ็อดเด",
+    imageThumbnail:
+      "images/products/chair/adde-chair-white__0728280_pe736170_s5.jpg",
+    image: [
+      "images/products/chair/adde-chair-white__0728280_pe736170_s5.jpg",
+      "images/products/chair/adde-chair-white__0872092_pe716742_s5.jpg",
+      "images/products/chair/adde-chair-white__1052547_pe846202_s5.jpg",
+      "images/products/chair/adde-chair-white__1052547_pe846202_s5.jpg"
+    ],
+    description:
+      "เก้าอี้",
+    detail: `เก้าอี้ ADDE/อ็อดเด มีดีไซน์โปร่งและเบาสามารถวางซ้อนกันได้ 
+    ทำให้ง่ายต่อการจัดเก็บเวลาคุณต้องการพื้นที่กว้างๆสำหรับกิจกรรมต่างๆ 
+    และยังเหมาะสำหรับเวลาที่คุณมีแขกมาบ้านหลายๆ คนอีกด้วย`,
+    brand: "ADDE",
+    category: "chair",
+    price: 299,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  },
+  {
+    _id: 7,
+    name: "SMÄLLEN สเมลเลน",
+    imageThumbnail:
+      "images/products/chair/smaellen-swivel-chair-black__1096271_pe864278_s5.jpg",
+    image: [
+      "images/products/chair/smaellen-swivel-chair-black__1096272_pe864279_s5.jpg",
+      "images/products/chair/smaellen-swivel-chair-black__1096275_pe864280_s5.jpg",
+      "images/products/chair/smaellen-swivel-chair-black__1115595_pe872151_s5.jpg",
+      "images/products/chair/smaellen-swivel-chair-black__1135201_ph186313_s5.jpg"
+    ],
+    description:
+      "เก้าอี้หมุน",
+    detail: `เก้าอี้ SMÄLLEN/สเมลเลน มีดีไซน์ที่เรียบง่าย สะอาดตา และมีพื้นผิวที่สัมผัสได้ถึงคุณภาพที่ดีเยี่ยม หากคุณต้องการเก้าอี้ที่ดูดี มีเอกลักษณ์ เก้าอี้ดีไซน์เรียบง่ายตัวนี้สามารถตอบโจทย์ความต้องการของคุณได้อย่างครบครัน!`,
+    brand: "SMÄLLEN",
+    category: "chair",
+    price: 799,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  },
+  {
+    _id: 8,
+    name: "FLINTAN ฟลินตัน",
+    imageThumbnail:
+      "images/products/chair/flintan-office-chair-beige__1007198_pe825954_s5.jpg",
+    image: [
+      "images/products/chair/flintan-office-chair-beige__1026868_pe834576_s5.jpg",
+      "images/products/chair/flintan-office-chair-beige__1033625_pe837360_s5.jpg",
+      "images/products/chair/flintan-office-chair-beige__1160253_pe888828_s5.jpg",
+      "images/products/chair/flintan-office-chair-beige__1160255_pe888830_s5.jpg"
+    ],
+    description:
+      "เก้าอี้สำนักงาน, เบจ",
+    detail:"เก้าอี้สำนักงานเออร์โกโนมิกช่วยให้คุณนั่งสบายและมีสมาธิด้วยพนักพิงทรงสูงที่รองรับหลังอย่างดี ทำด้วยผ้าตาข่ายเพิ่มความเย็นสบาย ผ้าหุ้มที่นั่งถอดซักได้ รับประกัน 10 ปี",
+    brand: "SMÄLLEN",
+    category: "chair",
+    price: 2799,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  },
+  {
+    _id: 8,
+    name: "BLECKBERGET เบลคเบเรียต",
+    imageThumbnail:
+      "images/products/chair/bleckberget-swivel-chair-idekulla-beige__0814722_pe776008_s5.jpg",
+    image: [
+      "images/products/chair/bleckberget-swivel-chair-idekulla-beige__0814724_pe776010_s5.jpg",
+      "images/products/chair/bleckberget-swivel-chair-idekulla-beige__0814725_pe776011_s5.jpg",
+      "images/products/chair/bleckberget-swivel-chair-idekulla-beige__1026885_pe834604_s5.jpg",
+      "images/products/chair/bleckberget-swivel-chair-idekulla-beige__1369059_pe958004_s5.jpg"
+    ],
+    description:
+      "เก้าอี้หมุน, อีเดคุลลา เบจ",
+    detail:"เก้าอี้สำนักงานเออร์โกโนมิกช่วยให้คุณนั่งสบายและมีสมาธิด้วยพนักพิงทรงสูงที่รองรับหลังอย่างดี ทำด้วยผ้าตาข่ายเพิ่มความเย็นสบาย ผ้าหุ้มที่นั่งถอดซักได้ รับประกัน 10 ปี",
+    brand: "BLECKBERGET",
+    category: "chair",
+    price: 1999,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  },
+  {
+    _id: 9,
+    name: "ELDBERGET เอลด์เบเรียต / MALSKÄR มัลแควร์",
+    imageThumbnail:
+      "images/products/chair/eldberget-malskaer-swivel-chair-pad-dark-grey-black__0814540_pe772625_s5.jpg",
+    image: [
+      "images/products/chair/eldberget-malskaer-swivel-chair-pad-dark-grey-black__0814541_pe772657_s5.jpg",
+      "images/products/chair/eldberget-malskaer-swivel-chair-pad-dark-grey-black__0814542_pe772658_s5.jpg",
+      "images/products/chair/eldberget-malskaer-swivel-chair-pad-dark-grey-black__0814543_pe772659_s5 (1).jpg",
+      "images/products/chair/eldberget-malskaer-swivel-chair-pad-dark-grey-black__0814543_pe772659_s5 (1).jpg"
+    ],
+    description:
+      "เก้าอี้หมุน+เบาะรอง, เทาเข้ม/ดำ",
+    detail:"รองรับหลังบริเวณส่วนล่างสามารถปรับระดับความสูงได้ โดยมาพร้อมล้อเลื่อนที่แข็งแรง รวมทุกอย่างไว้ที่เก้าอี้หมุนตัวนี้เป็นที่เรียบร้อยจะไถลเลื่อนไปใช้งานที่โต๊ะอาหาร หรือเพลิดเพลินกับความนุ่มสบายของเบาะที่นั่งก็ได้เช่นกัน",
+    brand: "ELDBERGET",
+    category: "chair",
+    price: 1699,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  },
+  {
+    _id: 10,
+    name: "MATCHSPEL มาต์ชสเปียล์",
+    imageThumbnail:
+      "images/products/chair/matchspel-gaming-chair-bomstad-light-grey__1236054_pe917426_s5.jpg",
+    image: [
+      "images/products/chair/matchspel-gaming-chair-bomstad-light-grey__1236055_pe917427_s5.jpg",
+      "images/products/chair/matchspel-gaming-chair-bomstad-light-grey__1236056_pe917428_s5.jpg",
+      "images/products/chair/matchspel-gaming-chair-bomstad-light-grey__1248931_pe923288_s5.jpg",
+      "images/products/chair/matchspel-gaming-chair-bomstad-light-grey__1257808_ph194303_s5.jpg"
+    ],
+    description:
+      "เก้าอี้สำหรับเล่นเกม, บุมสตอด เทาอ่อน",
+    detail:"เก้าอี้สำหรับเล่นเกม MATCHSPEL/มาต์ชสเปียล์ ช่วยให้คุณนั่งเล่นเกมได้อย่างเพลิดเพลิน รองรับสรีระร่างกายทุกส่วนและปรับระดับความสูงของเก้าอี้ได้ พร้อมพนักพิงศีรษะและที่วางแขน คุณจึงนั่งได้อย่างสบาย พร้อมลุยทุกเกมโปรด",
+    brand: "MATCHSPEL",
+    category: "chair",
+    price: 4999,
+    countInStock: 130,
+    rating: 5,
+    numReviews: 8,
+    size: {
+      length: 39,
+      width: 39,
+      thickness: 39,
+      height: 77,
+    },
+  }
 ];
 
 export default products;
