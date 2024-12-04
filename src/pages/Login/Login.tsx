@@ -1,11 +1,39 @@
 import { Divider } from "@mui/material";
+// Consider checking and updating the InputField component to accept 'value' prop correctly
 import InputField from "../../components/Login/InputField.tsx";
 import ThirdPartyLogIn from "../../components/Login/ThirdPartyLogIn.tsx";
-import { useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar.tsx";
+// Modify the InputField component to include a value prop if needed
+// Types
+import { InputValues } from "./Login.types.ts";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [inputValue, setInputValue] = useState<InputValues>({
+    email: "",
+    password: "",
+  });
+
+  // @For development input data
+  // console.log(isSignIn, inputValue);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setInputValue((prevValues) => ({
+      ...prevValues,
+      [id]: value, // Update the matching field dynamically
+    }));
+  };
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      // handle form submission
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -18,6 +46,7 @@ const Login = () => {
           <div className="relative z-20 flex h-full w-full">
             {/* Sign In Form */}
             <form
+              onSubmit={onSubmitHandler} // attach the submit handler here
               className={`absolute left-0 h-full w-1/2 px-8 transition-all duration-500 ${
                 isSignIn
                   ? "translate-x-0 opacity-100"
@@ -30,16 +59,20 @@ const Login = () => {
               <div className="mb-5">
                 <InputField
                   label="Your Email"
-                  id="email-login"
+                  id="email"
                   type="email"
                   placeholder="example@email.com"
                   required
+                  onChange={handleInputChange} // bind the handler
+                  value={inputValue.email}
                 />
                 <InputField
                   label="Your Password"
-                  id="password-login"
+                  id="password"
                   type="password"
                   required
+                  onChange={handleInputChange} // bind the handler
+                  value={inputValue.password}
                 />
               </div>
               <button type="submit" className="primary-bnt">
@@ -65,18 +98,21 @@ const Login = () => {
                   type="email"
                   placeholder="example@email.com"
                   required
+                  onChange={handleInputChange} // bind the handler
                 />
                 <InputField
                   label="Your Password"
                   id="password-signup"
                   type="password"
                   required
+                  onChange={handleInputChange} // bind the handler
                 />
                 <InputField
                   label="Confirm Password"
                   id="password-confirm"
                   type="password"
                   required
+                  onChange={handleInputChange} // bind the handler
                 />
               </div>
               <button type="submit" className="primary-bnt">
@@ -89,7 +125,7 @@ const Login = () => {
           <div className="absolute z-10 flex h-full w-full">
             {/* "Hello, Friend!" Section */}
             <div
-              className={`absolute left-0 flex h-full w-1/2 flex-col items-center justify-center bg-zinc-400 bg-[url('/public/images/login-signin-img.png')] px-8 text-center transition-all duration-500 ${
+              className={`absolute left-0 flex h-full w-1/2 flex-col items-center justify-center bg-zinc-400 bg-[url('/images/login-signin-img.png')] px-8 text-center transition-all duration-500 ${
                 isSignIn
                   ? "translate-x-[-100%] opacity-0"
                   : "translate-x-0 opacity-100"
@@ -112,7 +148,7 @@ const Login = () => {
 
             {/* "Welcome Back!" Section */}
             <div
-              className={`absolute right-0 flex h-full w-1/2 flex-col items-center justify-center bg-zinc-400 bg-[url('/public/images/sign-up-bg.jpg')] bg-cover px-8 text-center transition-all duration-500 ${
+              className={`absolute right-0 flex h-full w-1/2 flex-col items-center justify-center bg-zinc-400 bg-[url('/images/sign-up-bg.jpg')] bg-cover px-8 text-center transition-all duration-500 ${
                 isSignIn
                   ? "translate-x-0 opacity-100"
                   : "translate-x-[100%] opacity-0"
