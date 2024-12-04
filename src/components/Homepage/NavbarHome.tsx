@@ -9,6 +9,7 @@ function NavbarHome() {
           <div className="lg:text-3xl lg:font-bold">OrbitRex Living</div>
         </Link>
         <ul className="lg:flex lg:gap-10 lg:font-bold">
+<<<<<<< HEAD
           <li>
             <Link
               to="/"
@@ -49,6 +50,38 @@ function NavbarHome() {
               ADMIN
             </Link>
           </li>
+=======
+          <Link
+            to="/"
+            className="lg:border-b-2 lg:border-transparent lg:transition-all lg:duration-200 lg:hover:border-orange-500"
+          >
+            <li>HOME</li>
+          </Link>
+          <Link
+            to="/products"
+            className="lg:border-b-2 lg:border-transparent lg:transition-all lg:duration-200 lg:hover:border-orange-500"
+          >
+            <li>SHOP</li>
+          </Link>
+          <Link
+            to=""
+            className="lg:border-b-2 lg:border-transparent lg:transition-all lg:duration-200 lg:hover:border-orange-500"
+          >
+            <li>CONTACT</li>
+          </Link>
+          <Link
+            to=""
+            className="lg:border-b-2 lg:border-transparent lg:transition-all lg:duration-200 lg:hover:border-orange-500"
+          >
+            <li>SERVICES</li>
+          </Link>
+          <Link
+            to="/admin"
+            className="lg:border-b-2 lg:border-transparent lg:transition-all lg:duration-200 lg:hover:border-orange-500"
+          >
+            <li>ADMIN</li>
+          </Link>
+>>>>>>> dev/products
         </ul>
         <div className="lg:relative">
           <input
@@ -65,6 +98,7 @@ function NavbarHome() {
         </div>
       </nav>
 
+<<<<<<< HEAD
       {/* Tablet */}
       <nav className="lg:hidden">
         <div className="mx-5 flex h-20 items-center justify-between gap-4 text-white">
@@ -74,11 +108,22 @@ function NavbarHome() {
                 OrbitRex Living
               </h1>
             </div>
+=======
+      {/* tablet */}
+      <nav className="lg:hidden">
+        <div className="z-10 mx-5 flex h-20 items-center justify-center gap-20 text-white">
+          <Link to="/">
+            <div className="text-2xl font-bold">OrbitRex Living</div>
+>>>>>>> dev/products
           </Link>
           <div className="relative">
             <input
               type="text"
+<<<<<<< HEAD
               className="w-80 rounded-full px-5 py-3 text-black outline-none"
+=======
+              className="first: w-60 rounded-full px-5 py-3 text-black outline-none"
+>>>>>>> dev/products
               placeholder="Search"
             />
             <button className="absolute right-1 top-1/2 -translate-y-2.5 transform rounded-full px-5 text-gray-300">
@@ -86,7 +131,11 @@ function NavbarHome() {
             </button>
           </div>
           <div className="flex gap-10">
+<<<<<<< HEAD
             <Link to="/cart">
+=======
+            <Link to="">
+>>>>>>> dev/products
               <i className="fa-solid fa-basket-shopping text-4xl"></i>
             </Link>
             <button>
