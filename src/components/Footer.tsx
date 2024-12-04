@@ -1,9 +1,8 @@
+
 function footer() {
-
     return (
-
-        <div className='flex lg:gap-40 border-t-2 p-10 justify-center md:gap-16 md:whitespace-nowrap'>
-            <div className='lg:text-4xl md:text-2xl'>
+        <div className='flex gap-40 border-t-2 p-10 justify-center'>
+            <div className='text-4xl'>
                 <p><i className="fa-brands fa-figma"></i></p>
                 <span><i className="fa-brands fa-x-twitter"></i></span>
                 <span><i className="fa-brands fa-instagram  ml-2"></i></span>
