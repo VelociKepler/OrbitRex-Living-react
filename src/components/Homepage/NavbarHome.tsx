@@ -11,7 +11,7 @@ function NavbarHome() {
   return (
     <>
       {/* Desktop */}
-      <nav className="md:hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
+      <nav className="hidden lg:block lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
         {/* Logo */}
         <Link to="/">
           <div className="lg:text-3xl lg:font-bold">OrbitRex Living</div>
@@ -67,9 +67,11 @@ function NavbarHome() {
         </div>
       </nav>
 
+
       {/* Tablet */}
       <nav className="lg:hidden">
         <div className="h-20 flex items-center justify-between gap-4  text-white mx-5">
+
           {/* Logo */}
           <Link to="/">
             <div className="w-full">
