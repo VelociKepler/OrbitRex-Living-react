@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import Footer from "../../components/Footer";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -76,7 +77,10 @@ function MobilePage() {
             Shop
             <br /> by categories
           </h1>
-          <button className="font-bold">ALL CATEGORIES  <i className="fa-duotone fa-solid fa-play text-sm"></i></button>
+          <button className="font-bold">
+            ALL CATEGORIES{" "}
+            <i className="fa-duotone fa-solid fa-play text-sm"></i>
+          </button>
         </div>
         <div className="h-70 grid grid-cols-3 gap-14">
           <Link to="">
@@ -96,72 +100,82 @@ function MobilePage() {
 
       {/* room section */}
       <div className="mb-10">
-        <div className='mx-10 flex flex-row justify-center gap-10'>
-          <Link to='' className='hover:scale-110 transition-all duration-300'>
-            <img src={Image10} alt="" className='h-full' />
+        <div className="mx-10 flex flex-row justify-center gap-10">
+          <Link to="" className="hover:scale-110 transition-all duration-300">
+            <img src={Image10} alt="" className="h-full" />
           </Link>
-          <Link to='' className='hover:scale-110 transition-all duration-300'>
-            <img src={Image11} alt="" className='h-full' />
+          <Link to="" className="hover:scale-110 transition-all duration-300">
+            <img src={Image11} alt="" className="h-full" />
           </Link>
         </div>
       </div>
 
-
       {/* service section*/}
       <div className="mx-10 my-10">
-      <h1 className="text-3xl font-bold w-[100px] border-b-2 border-orange-500 mb-10">Service</h1>
+        <h1 className="text-3xl font-bold w-[100px] border-b-2 border-orange-500 mb-10">
+          Service
+        </h1>
 
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={30}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-      >
-        <SwiperSlide>
-          <div className="flex w-full h-60 rounded-lg shadow-lg">
-            <img src={Image12} alt="" className="w-48 rounded-s-lg" />
-            <div className="flex flex-col m-5">
-              <h1 className="text-lg font-bold 2xl:text-xl">
-                บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง
-              </h1>
-              <br />
-              <p>
-                ช่วยคุณได้ทุกงานเล็กใหญ่เรื่องบ้าน ตั้งแต่หา ไอเดียตกแต่ง ออกแบบ เลือกสินค้า และรีโนเวตต่อเติม
-              </p>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={30}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+        >
+          <SwiperSlide>
+            <div className="flex w-full h-60 rounded-lg shadow-lg">
+              <img src={Image12} alt="" className="w-48 rounded-s-lg" />
+              <div className="flex flex-col m-5">
+                <h1 className="text-lg font-bold 2xl:text-xl">
+                  บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง
+                </h1>
+                <br />
+                <p>
+                  ช่วยคุณได้ทุกงานเล็กใหญ่เรื่องบ้าน ตั้งแต่หา ไอเดียตกแต่ง
+                  ออกแบบ เลือกสินค้า และรีโนเวตต่อเติม
+                </p>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
 
-        <SwiperSlide>
-          <div className="flex w-full h-60 rounded-lg shadow-lg">
-            <img src={Image13} alt="" className="w-48 rounded-s-lg" />
-            <div className="flex flex-col m-5">
-              <h1 className="text-xl font-bold">บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด</h1>
-              <br />
-              <p>
-                ครอบคลุมงานบริการกว่า 41 ประเภท ไว้ใจได้ ไม่ทิ้งงาน การันตีงานเสร็จตรงเวลา รับประกันงานสูงสุด 1 ปี
-              </p>
+          <SwiperSlide>
+            <div className="flex w-full h-60 rounded-lg shadow-lg">
+              <img src={Image13} alt="" className="w-48 rounded-s-lg" />
+              <div className="flex flex-col m-5">
+                <h1 className="text-xl font-bold">
+                  บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด
+                </h1>
+                <br />
+                <p>
+                  ครอบคลุมงานบริการกว่า 41 ประเภท ไว้ใจได้ ไม่ทิ้งงาน
+                  การันตีงานเสร็จตรงเวลา รับประกันงานสูงสุด 1 ปี
+                </p>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
 
-        <SwiperSlide>
-          <div className="flex w-full h-60 rounded-lg shadow-lg">
-            <img src={Image14} alt="" className="w-48 rounded-s-lg" />
-            <div className="flex flex-col m-5">
-              <h1 className="text-xl font-bold">
-                บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด
-              </h1>
-              <br />
-              <p>
-                ผู้ให้บริการหลากหลาย เปรียบเทียบง่าย และสามารถเลือกซื้อสินค้าพร้อมบริการติดตั้งได้
-              </p>
+          <SwiperSlide>
+            <div className="flex w-full h-60 rounded-lg shadow-lg">
+              <img src={Image14} alt="" className="w-48 rounded-s-lg" />
+              <div className="flex flex-col m-5">
+                <h1 className="text-xl font-bold">
+                  บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด
+                </h1>
+                <br />
+                <p>
+                  ผู้ให้บริการหลากหลาย เปรียบเทียบง่าย
+                  และสามารถเลือกซื้อสินค้าพร้อมบริการติดตั้งได้
+                </p>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+          </SwiperSlide>
+        </Swiper>
       </div>
 
+      {/* Footer Section */}
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }
