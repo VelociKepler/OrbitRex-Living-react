@@ -17,14 +17,13 @@ const MarqueeSlider = () => {
       <div className="flex animate-marquee gap-5">
 
         {images.map((src, index) => (
-          <>
            <img
             key={index}
             src={src}
             alt={`Slide ${index + 1}`}
             className="w-80 h-96 object-cover flex-shrink-0 rounded-2xl transition-all duration-100 hover:border-4"
           />
-          </>
+          
         ))}
 
         {images.map((src, index) => (
