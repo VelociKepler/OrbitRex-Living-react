@@ -11,7 +11,7 @@ function NavbarHome() {
   return (
     <>
       {/* Desktop */}
-      <nav className="md:hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
+      <nav className="hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
         {/* Logo */}
         <Link to="/">
           <div className="lg:text-3xl lg:font-bold">OrbitRex Living</div>
@@ -19,36 +19,46 @@ function NavbarHome() {
 
         {/* Menu */}
         <ul className="lg:flex lg:gap-10 lg:font-bold">
-          <Link
-            to="/"
-            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-          >
-            <li>HOME</li>
-          </Link>
-          <Link
-            to="/shop"
-            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-          >
-            <li>SHOP</li>
-          </Link>
-          <Link
-            to=""
-            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-          >
-            <li>CONTACT</li>
-          </Link>
-          <Link
-            to=""
-            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-          >
-            <li>SERVICES</li>
-          </Link>
-          <Link
-            to="/admin"
-            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-          >
-            <li>ADMIN</li>
-          </Link>
+          <li>
+            <Link
+              to="/"
+              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+            >
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/shop"
+              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+            >
+              SHOP
+            </Link>
+          </li>
+          <li>
+            <Link
+              to=""
+              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+            >
+              CONTACT
+            </Link>
+          </li>
+          <li>
+            <Link
+              to=""
+              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+            >
+              SERVICES
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/admin"
+              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+            >
+              ADMIN
+            </Link>
+          </li>
         </ul>
 
         {/* Search bar & Profile */}
@@ -67,11 +77,12 @@ function NavbarHome() {
         </div>
       </nav>
 
-      {/* Tablet */}
+      {/* Tablet & Moblie */}
       <nav className="lg:hidden">
         <div className="h-20 flex items-center justify-between gap-4  text-white mx-5">
+
           {/* Logo */}
-          <Link to="/">
+          <Link to="/" className="hidden md:block">
             <div className="w-full">
               <h1 className="flex text-2xl font-bold whitespace-nowrap">
                 OrbitRex Living
@@ -80,10 +91,10 @@ function NavbarHome() {
           </Link>
 
           {/* Search bar */}
-          <div className="relative">
+          <div className="relative flex flex-grow-0 justify-center w-full">
             <input
               type="text"
-              className="px-5 py-3 rounded-full w-80 first: text-black outline-none"
+              className="px-5 py-3 rounded-full w-full max-w-[25em] text-black outline-none"
               placeholder="Search"
             />
             <button className="absolute top-1/2 right-1 transform -translate-y-2.5 text-gray-300 px-5 rounded-full">
