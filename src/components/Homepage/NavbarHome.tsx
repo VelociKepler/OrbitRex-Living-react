@@ -8,6 +8,18 @@ function NavbarHome() {
         <Link to='/'><div className='lg:text-3xl lg:font-bold'>OrbitRex Living</div></Link>
         <ul className='lg:flex lg:gap-10 lg:font-bold'>
           <Link to='/' className='lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200'>
+      <nav className="hidden lg:block lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
+        {/* Logo */}
+        <Link to="/">
+          <div className="lg:text-3xl lg:font-bold">OrbitRex Living</div>
+        </Link>
+
+        {/* Menu */}
+        <ul className="lg:flex lg:gap-10 lg:font-bold">
+          <Link
+            to="/"
+            className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
+          >
             <li>HOME</li>
           </Link>
           <Link to='/shop' className='lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200'>
@@ -30,6 +42,7 @@ function NavbarHome() {
         </div>
       </nav>
 
+
       {/* tablet */}
       <nav className='lg:hidden'>
 
@@ -39,6 +52,29 @@ function NavbarHome() {
           <div className='relative'>
             <input type="text" className='px-5 py-3 rounded-full w-60 first: text-black outline-none' placeholder='Search' />
             <button className='absolute top-1/2 right-1 transform -translate-y-2.5 text-gray-300 px-5 rounded-full'><i className="fa-solid fa-magnifying-glass"></i></button>
+      {/* Tablet */}
+      <nav className="lg:hidden">
+        <div className="h-20 flex items-center justify-between gap-4  text-white mx-5">
+
+          {/* Logo */}
+          <Link to="/">
+            <div className="w-full">
+              <h1 className="flex text-2xl font-bold whitespace-nowrap">
+                OrbitRex Living
+              </h1>
+            </div>
+          </Link>
+
+          {/* Search bar */}
+          <div className="relative">
+            <input
+              type="text"
+              className="px-5 py-3 rounded-full w-80 first: text-black outline-none"
+              placeholder="Search"
+            />
+            <button className="absolute top-1/2 right-1 transform -translate-y-2.5 text-gray-300 px-5 rounded-full">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
           <div className='flex gap-10'>
             <Link to=''><i className="fa-solid fa-basket-shopping text-4xl"></i></Link>
