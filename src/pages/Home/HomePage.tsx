@@ -3,6 +3,7 @@ import Image from '../../images/Homepage/Homepagecover.png'
 import NavbarHome from '../../components/Homepage/NavbarHome';
 import Desktop from './DesktopPage';
 import TabletPage from './TabletPage';
+import MobilePage from './MobilePage';
 
 function HomePage() {
 
@@ -29,11 +30,11 @@ function HomePage() {
             </div>
 
             {/* Header section Tablet */}
-            <div className='relative lg:hidden -translate-y-20 flex'>
-                <img src={Image} alt="" className='w-full h-screen object-cover -z-10' />
-                <div className={`bg-black bg-opacity-50 absolute top-80 left-10 p-5 rounded-xl transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-                    <h1 className='text-5xl font-bold text-white'>Furniture, decor,<br />and beyond</h1>
-                    <button className='bg-orange-500 text-white px-5 py-2 rounded-full mt-5'>Shop</button>
+            <div className='relative lg:hidden -translate-y-20'>
+                <img src={Image} alt="" className='w-[100%] h-[500px] md:w-full md:h-screen object-cover z-0' />
+                <div className={`bg-black bg-opacity-50 absolute top-40 md:top-80 left-10 py-5 px-10 rounded-xl transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+                    <h1 className='text-xl md:text-5xl font-bold text-white'>Furniture, decor,<br />and beyond</h1>
+                    <button className='bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full mt-5'>Shop</button>
                 </div>
             </div>
 
@@ -44,8 +45,13 @@ function HomePage() {
             </div>
 
             {/* Main section Tablet */}
-            <div className='hidden lg:hidden md:block'>
+            <div className='hidden lg:hidden sm:hidden md:block '>
                 <TabletPage />
+            </div>
+
+            {/* Main section Tablet */}
+            <div className='lg:hidden md:hidden'>
+                <MobilePage />
             </div>
 
         </>
