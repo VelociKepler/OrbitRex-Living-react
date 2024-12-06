@@ -32,9 +32,9 @@ function HomePage() {
             {/* Header section Tablet */}
             <div className='relative lg:hidden -translate-y-20'>
                 <img src={Image} alt="" className='w-[100%] h-[500px] md:w-full md:h-screen object-cover z-0' />
-                <div className={`bg-black bg-opacity-50 absolute top-40 md:top-80 left-10 py-5 px-10 rounded-xl transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+                <div className={`bg-black bg-opacity-50 absolute top-40 md:top-80 left-10 py-3 px-10 rounded-xl transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
                     <h1 className='text-xl md:text-5xl font-bold text-white'>Furniture, decor,<br />and beyond</h1>
-                    <button className='bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full mt-5'>Shop</button>
+                    <button className='bg-orange-500 hover:bg-orange-600 text-white px-4 py-1 rounded-full mt-4'>Shop</button>
                 </div>
             </div>
 

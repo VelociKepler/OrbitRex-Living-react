@@ -21,27 +21,27 @@ function MobilePage() {
   return (
     <>
       {/* warranty section */}
-      <div className="mx-5 relative -translate-y-10">
+      <div className="mx-2 relative -translate-y-10">
         <div className="flex gap-2">
 
-          <div className="w-full flex flex-col justify-center items-center shadow-md p-5">
-            <img src={Image1} alt="" className="w-16 mb-5" />
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-3">
+            <img src={Image1} alt="" className="w-16 mb-4" />
             <h1 className="text-lg font-bold text-center">จัดส่งฟรี ทั่วประเทศ</h1>
           </div>
-          <div className="w-full flex flex-col justify-center items-center shadow-md">
-            <img src={Image2} alt="" className="w-16 mb-5" />
-            <h1 className="text-xl font-bold text-center">นโยบายการคืนเงิน</h1>
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-3">
+            <img src={Image2} alt="" className="w-16 mb-4" />
+            <h1 className="text-lg font-bold text-center">นโยบายการคืนเงิน</h1>
           </div>
-          <div className="w-full flex flex-col justify-center items-center shadow-md">
-            <img src={Image3} alt="" className="w-16 mb-5" />
-            <h1 className="text-xl font-bold text-center">รับประกันสินค้า</h1>
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-3">
+            <img src={Image3} alt="" className="w-16 mb-4" />
+            <h1 className="text-lg font-bold text-center">รับประกันสินค้า</h1>
           </div>
 
         </div>
       </div>
 
       {/* New Arrivals Section */}
-      <div className="mt-10 mx-10">
+      <div className="mx-10">
 
         <h1 className="text-2xl font-bold">New Arrivals</h1>
         <h1 className="h-0.5 w-36 bg-orange-500 mb-10"></h1>
@@ -109,7 +109,7 @@ function MobilePage() {
           <SwiperSlide>
             <div className="flex w-full h-40 rounded-lg shadow-lg">
               <img src={Image12} alt="" className="w-20 rounded-s-lg" />
-              <div className="flex flex-col m-5">
+              <div className="flex flex-col justify-center m-2">
                 <h1 className="text-sm font-bold 2xl:text-xl">
                   บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง
                 </h1>
@@ -124,7 +124,7 @@ function MobilePage() {
           <SwiperSlide>
             <div className="flex w-full h-40 rounded-lg shadow-lg">
               <img src={Image13} alt="" className="w-20 rounded-s-lg" />
-              <div className="flex flex-col m-5">
+              <div className="flex flex-col justify-center m-2">
                 <h1 className="text-sm font-bold">
                   บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด
                 </h1>
@@ -139,7 +139,7 @@ function MobilePage() {
           <SwiperSlide>
             <div className="flex w-full h-40 rounded-lg shadow-lg">
               <img src={Image14} alt="" className="w-20 rounded-s-lg" />
-              <div className="flex flex-col m-5">
+              <div className="flex flex-col justify-center m-2">
                 <h1 className="text-sm font-bold">
                   บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด
                 </h1>
