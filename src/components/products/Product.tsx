@@ -1,20 +1,12 @@
 import { Card } from "react-bootstrap";
-import Rating from "../Rating.tsx";
+import Rating from "../Rating";
+import { Product as ProductType } from "./Product.type";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  imageThumbnail: string;
-  rating: number;
-  numReviews: number;
-}
-
-const Product = ({ product }: Product) => {
+const Product = ({ product }: { product: ProductType }) => {
   return (
     <div>
       <Card>
-        <Card.Img variant="top" src={`${product.imageThumbnail}`} />
+        <Card.Img variant="top" src={product.imageThumbnail} />
         <Card.Body>
           <Card.Title as="div" className="product-title">
             <strong>{product.name}</strong>
