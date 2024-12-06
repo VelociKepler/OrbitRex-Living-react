@@ -78,8 +78,8 @@ function NavbarHome() {
       </nav>
 
       {/* Tablet & Moblie */}
-      <nav className="lg:hidden">
-        <div className="h-20 flex items-center justify-between gap-4  text-white mx-5">
+        <nav className="lg:hidden h-20 flex items-center justify-between px-2 text-white">
+
           {/* Logo */}
           <Link to="/" className="hidden md:block">
             <div className="w-full">
@@ -90,7 +90,6 @@ function NavbarHome() {
           </Link>
 
           {/* Search bar */}
-          <div className="flex justify-center items-center">
             <div className="relative flex items-center w-[250px] md:w-[300px]">
               <input
                 type="text"
@@ -101,10 +100,9 @@ function NavbarHome() {
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
-          </div>
 
           {/* Right Button */}
-          <div className="flex gap-5">
+          <div className="flex gap-4">
             <Link to="">
               <i className="fa-solid fa-basket-shopping text-3xl md:text-4xl"></i>
             </Link>
@@ -156,8 +154,7 @@ function NavbarHome() {
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
+        </nav>
     </>
   );
 }
