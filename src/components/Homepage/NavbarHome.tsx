@@ -80,6 +80,7 @@ function NavbarHome() {
       {/* Tablet & Moblie */}
       <nav className="lg:hidden">
         <div className="h-20 flex items-center justify-between gap-4  text-white mx-5">
+
           {/* Logo */}
           <Link to="/" className="hidden md:block">
             <div className="w-full">
@@ -90,26 +91,24 @@ function NavbarHome() {
           </Link>
 
           {/* Search bar */}
-          <div className="flex justify-center items-center">
-            <div className="relative flex items-center w-[250px] md:w-[300px]">
-              <input
-                type="text"
-                className="py-2 rounded-full w-full text-black outline-none pl-10"
-                placeholder="Search"
-              />
-              <button className="absolute right-5 text-gray-300">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </div>
+          <div className="relative flex flex-grow-0 justify-center w-full">
+            <input
+              type="text"
+              className="px-5 py-3 rounded-full w-full max-w-[25em] text-black outline-none"
+              placeholder="Search"
+            />
+            <button className="absolute top-1/2 right-1 transform -translate-y-2.5 text-gray-300 px-5 rounded-full">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
 
           {/* Right Button */}
-          <div className="flex gap-5">
+          <div className="flex gap-10">
             <Link to="">
-              <i className="fa-solid fa-basket-shopping text-3xl md:text-4xl"></i>
+              <i className="fa-solid fa-basket-shopping text-4xl"></i>
             </Link>
             <button onClick={toggleMenu}>
-              <i className="fa-solid fa-bars text-3xl md:text-4xl"></i>
+              <i className="fa-solid fa-bars text-4xl"></i>
             </button>
           </div>
 
@@ -131,11 +130,6 @@ function NavbarHome() {
             <ul className="mt-16 space-y-8 text-center">
               <li>
                 <Link to="/" className="text-2xl hover:text-orange-500">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
                   Home
                 </Link>
               </li>
@@ -146,7 +140,7 @@ function NavbarHome() {
               </li>
               <li>
                 <Link to="/" className="text-2xl hover:text-orange-500">
-                  Contact
+                Contact
                 </Link>
               </li>
               <li>
