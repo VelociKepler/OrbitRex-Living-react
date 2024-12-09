@@ -78,7 +78,7 @@ function NavbarHome() {
       </nav>
 
       {/* Tablet & Moblie */}
-        <nav className="lg:hidden h-20 flex items-center justify-between px-2 text-white">
+        <nav className="lg:hidden h-20 flex items-center justify-between px-2 text-white ">
 
           {/* Logo */}
           <Link to="/" className="hidden md:block">

@@ -89,15 +89,15 @@ function MainHome() {
             <div className='mx-40 2xl:mx-80 mt-20 flex gap-5'>
                 <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
                     <img src={Image9} alt="" className='w-24 mb-5' />
-                    <h1 className='text-2xl font-bold'>จัดส่งฟรี ทั่วประเทศ</h1>
+                    <h1 className='text-xl text-center font-bold'>จัดส่งฟรี ทั่วประเทศ</h1>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center shadow-md'>
+                <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
                     <img src={Image10} alt="" className='w-24 mb-5' />
-                    <h1 className='text-2xl font-bold'>นโยบายการคืนเงิน</h1>
+                    <h1 className='text-xl text-center font-bold'>นโยบายการคืนเงิน</h1>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center shadow-md'>
+                <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
                     <img src={Image11} alt="" className='w-24 mb-5' />
-                    <h1 className='text-2xl font-bold'>รับประกันสินค้า</h1>
+                    <h1 className='text-xl text-center font-bold'>รับประกันสินค้า</h1>
                 </div>
             </div>
 
