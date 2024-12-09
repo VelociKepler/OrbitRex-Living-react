@@ -56,7 +56,7 @@ const Login = () => {
               <h1 className="mb-10 pt-4 text-3xl font-bold">Log in</h1>
               <ThirdPartyLogIn />
               <Divider>or</Divider>
-              <div className="mb-5">
+              <div className="mb-2">
                 <InputField
                   label="Your Email"
                   id="email"
@@ -91,7 +91,7 @@ const Login = () => {
               <h1 className="mb-10 pt-4 text-3xl font-bold">Create Account</h1>
               <ThirdPartyLogIn />
               <Divider>or</Divider>
-              <div className="mb-5">
+              <div className="mb-2">
                 <InputField
                   label="Your Email"
                   id="email-signup"
@@ -138,7 +138,7 @@ const Login = () => {
                 </p>
                 <button
                   type="button"
-                  className="mt-4 rounded border p-3"
+                  className="mt-4 rounded border p-2 hover:bg-orange-500"
                   onClick={() => setIsSignIn(!isSignIn)}
                 >
                   Sign up
@@ -159,7 +159,7 @@ const Login = () => {
                 <p>Enter your personal details to use all site features</p>
                 <button
                   type="button"
-                  className="mt-4 rounded border p-3"
+                  className="mt-4 rounded border p-2 hover:bg-orange-500"
                   onClick={() => setIsSignIn(!isSignIn)}
                 >
                   Sign in

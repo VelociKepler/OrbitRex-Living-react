@@ -3,6 +3,7 @@ import HomePage from "./pages/Home/HomePage";
 import Login from "./pages/Login/Login.tsx";
 import AdminPage from "./pages/adminpage/adminpage.tsx";
 import ProductPage from "./pages/products/ProductPage.tsx";
+import ProductScreen from "./pages/products/ProductScreen.tsx";
 
 function App() {
   return (
@@ -11,9 +12,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/products" element={<ProductPage />}>
-          {/*<Route path="/product/:id" element={<ProductScreen />} />*/}
-        </Route>
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/products/:id" element={<ProductScreen />} />
       </Routes>
     </Router>
   );
