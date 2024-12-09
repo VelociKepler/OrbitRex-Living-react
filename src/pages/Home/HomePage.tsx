@@ -4,6 +4,7 @@ import NavbarHome from '../../components/Homepage/NavbarHome';
 import Desktop from './DesktopPage';
 import TabletPage from './TabletPage';
 import MobilePage from './MobilePage';
+import ChatWidget from './../../components/ChatWidget';
 
 function HomePage() {
 
@@ -37,7 +38,6 @@ function HomePage() {
                     <button className='bg-orange-500 hover:bg-orange-600 text-white px-4 py-1 rounded-full mt-4'>Shop</button>
                 </div>
             </div>
-
 
             {/* Main section Desktop */}
             <div className='hidden lg:block'>
