@@ -7,7 +7,7 @@ interface RatingProps {
 
 const Rating = ({ value, text }: RatingProps) => {
   return (
-    <div className="flex">
+    <div className = "rating flex">
       <span>
         {value >= 1 ? (
           <FaStar />
@@ -53,7 +53,7 @@ const Rating = ({ value, text }: RatingProps) => {
           <FaRegStar />
         )}
       </span>
-      <span className="rating-text">{text && text}</span>
+      <span className = "rating-text">{text && text}</span>
     </div>
   );
 };

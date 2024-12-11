@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Divider } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -36,6 +36,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const url = process.env.REACT_APP_BASE_URL;
+
+      // Deconstruct inputValues state
       const { name, email, password, confirmPassword } = inputValues;
 
       let response;
@@ -70,16 +72,21 @@ const Login = () => {
       } else {
         toast.error(response.data.message || "Something went wrong!");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error(error.response?.data?.message || "Unexpected error occurred!");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error(error);
+        toast.error(error.response?.data?.message || "Unexpected error occurred!");
+      } else {
+        console.error("An unknown error occurred:", error);
+        toast.error("An unexpected error occurred!");
+      }
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className = "flex h-screen items-center justify-center bg-zinc-100 text-center">
+      <div className = "flex h-screen top-[-64px] items-center justify-center bg-zinc-100 text-center">
         <div className = "relative top-10 min-h-[560px] w-3/4 overflow-hidden rounded-2xl bg-white shadow-md">
           {/* Forms Container */}
           <div className = "relative z-20 flex h-full">
@@ -87,7 +94,7 @@ const Login = () => {
             {isSignIn && (
               <form
                 onSubmit = {handleSubmit}
-                className = {`absolute left-0 h-full w-1/2 px-12 transition-all translate-x-[0] duration-500 opacity-100 ${isSignIn ? "translate-x-[-100%] opacity-0" : "translate-x-0"}`}
+                className = {`absolute left-0 h-full w-1/2 px-12 transition-all duration-1000 opacity-0 ${isSignIn ? "translate-x-0 opacity-100" : "translate-x-[100%] opacity-0"}`}
               >
                 <h1 className = "mb-10 pt-4 text-3xl font-bold">Log in</h1>
                 <ThirdPartyLogIn />

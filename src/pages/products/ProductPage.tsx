@@ -14,14 +14,14 @@ const ProductPage = () => {
       const updatedState = [...prevState];
       updatedState[index] = true;
       return updatedState;
-    })
-  }
+    });
+  };
   return (
-    <div>
+    <>
       <Navbar />
-      <div className = "m-5">
+      <div className = "m-5 pt-10">
         <h1>Latest Products</h1>
-        <Row className = "g-4 max-width-lg">
+        <Row className = "g-4 max-width-lg pt-10">
           {products.map((product: any, index: number) => (
             <Col
               key = {product._id}
@@ -43,7 +43,7 @@ const ProductPage = () => {
           ))}
         </Row>
       </div>
-    </div>
+    </>
   );
 };
 
