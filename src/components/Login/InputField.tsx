@@ -16,7 +16,7 @@ const InputField = ({
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }) => (
-  <div className="mb-5">
+  <div className="mb-3">
     <label
       htmlFor={id}
       className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"

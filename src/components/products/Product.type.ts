@@ -5,20 +5,27 @@ export interface Size {
   height?: number;
 }
 
-export interface Product {
-  _id: number;
-  id: number;
+export interface IProduct {
+  _id: number; // Assuming ObjectId is represented as a string
   name: string;
-  imageThumbnail: string;
-  image: string[];
   description: string;
-  detail?: string;
-  brand: string;
   category: string;
-  price: number;
-  countInStock: number;
+  pricing: string;
+  stock: {
+    total: number;
+    status: "in_stock" | "out_of_stock";
+  };
+  images: string[]; // URLs or paths
+  color: string[];
   rating: number;
   numReviews: number;
-  productNumber?: string;
-  size: Size;
+  metadata: {
+    brand: string;
+    weight: number;
+    dimensions: {
+      width: number;
+      height: number;
+      length: number;
+    };
+  };
 }

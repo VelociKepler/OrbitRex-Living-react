@@ -1,18 +1,43 @@
 import { Card } from "react-bootstrap";
 import Rating from "../Rating";
-import { Product as ProductType } from "./Product.type";
+import IProduct from "./Product.type";
+import { Link } from "react-router-dom";
+import { IoPricetagsOutline, IoPricetags } from "react-icons/io5";
 
-const Product = ({ product }: { product: ProductType }) => {
+
+const Product = ({ product }: { product: IProduct }) => {
   return (
     <div>
       <Card>
-        <Card.Img variant="top" src={product.imageThumbnail} />
+        <Link to = {`/products/${product._id}`}>
+          <Card.Img
+            variant = "top"
+            src = {product.images[0]}
+          />
+        </Link>
         <Card.Body>
-          <Card.Title as="div" className="product-title">
-            <strong>{product.name}</strong>
-          </Card.Title>
-          <Rating value={product.rating} text={`(${product.numReviews})`} />
-          <Card.Text as="h3">฿{product.price}</Card.Text>
+          <Link to = {`/products/${product._id}`}>
+            <Card.Title
+              as = "div"
+              className = "product-title text-xl"
+            >
+              <strong>{product.name}</strong>
+            </Card.Title>
+          </Link>
+          <Rating
+            value = {product.rating}
+            text = {`(${product.numReviews})`}
+          />
+          <Card.Text
+            as = "h2"
+            className = "text-2xl font-bold mt-2 italic"
+          >฿{product.pricing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
+          <Card.Text
+            className = "text-sm mt-2 flex items-center"
+          >
+            <IoPricetags color = "#A6A6A6" />
+            <span className = "mx-1">{product.category}</span>
+          </Card.Text>
         </Card.Body>
       </Card>
     </div>
