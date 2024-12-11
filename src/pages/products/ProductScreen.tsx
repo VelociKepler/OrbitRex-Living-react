@@ -2,10 +2,18 @@ import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import products from "../../products.tsx";
 import Navbar from "../../components/Navbar.tsx";
 import Rating from "../../components/Rating.tsx";
+
+interface ProductActionsProps {
+  price: number; // Assuming price is a numerical value
+  colors: string[]; // Assuming colors is an array of strings
+  activeColor: string; // The currently selected color
+  onColorSelect: (color: string) => void; // Function to handle color selection
+  onAddToCart: () => void; // Function to handle adding the product to the cart
+}
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -153,13 +161,13 @@ const ProductDetails = ({ product }) => (
 );
 
 // Reusable Product Actions Component
-const ProductActions = ({
-                          price,
-                          colors,
-                          activeColor,
-                          onColorSelect,
-                          onAddToCart
-                        }) => (
+const ProductActions: React.FC<ProductActionsProps> = ({
+                                                         price,
+                                                         colors,
+                                                         activeColor,
+                                                         onColorSelect,
+                                                         onAddToCart
+                                                       }) => (
   <Card>
     <ListGroup variant = "flush">
       {/* Price */}
