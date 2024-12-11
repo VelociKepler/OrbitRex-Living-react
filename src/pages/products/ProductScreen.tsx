@@ -10,8 +10,8 @@ import Rating from "../../components/Rating.tsx";
 // TypeScript interfaces for props
 interface ProductActionsProps {
   price: string;
-  colors: Record<string, string> | undefined;
-  activeColor: string | null;
+  colors: string[] | undefined;
+  activeColor: string;
   onColorSelect: (color: string) => void;
   onAddToCart: () => void;
 }
@@ -34,7 +34,7 @@ const ProductScreen: React.FC = () => {
   // State
   const [activeImage, setActiveImage] = useState(product?.images?.[0] || "");
   const [activeColor, setActiveColor] = useState(
-    product?.color && Object.values(product.color)[0]
+    product?.color ? Object.values(product.color)[0] : ""
   );
   const [cartCount, setCartCount] = useState(0);
   console.log(cartCount);
