@@ -4,7 +4,6 @@ import NavbarHome from '../../components/Homepage/NavbarHome';
 import Desktop from './DesktopPage';
 import TabletPage from './TabletPage';
 import MobilePage from './MobilePage';
-import ChatWidget from './../../components/ChatWidget';
 
 function HomePage() {
 

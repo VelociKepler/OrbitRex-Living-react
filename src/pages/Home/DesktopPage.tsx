@@ -15,12 +15,16 @@ import Image14 from '../../images/Homepage/home-solution-item-3.png'
 import { Link } from 'react-router-dom'
 import MarqueeSlider from '../../components/Homepage/MarqueeSlider'
 import Footer from '../../components/Footer'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from 'swiper/modules'
+import "swiper/css";
+import "swiper/css/pagination";
 
 function MainHome() {
     return (
 
         // Desktop
-        <div >
+        <div className='text-black'>
 
             {/* Main Section 1 */}
             <div className="relative -top-20">
@@ -114,35 +118,62 @@ function MainHome() {
             </div>
 
             {/* Service Section */}
-            <div className='flex mx-20 my-20 gap-10'>
+            <div className="mx-5 mb-10">
+                <h1 className="text-3xl font-bold w-[100px] border-b-2 border-orange-500 mb-10">
+                    Service
+                </h1>
 
-                <div className='flex w-screen h-60 rounded-lg shadow-lg'>
-                    <img src={Image12} alt="" className='rounded-s-lg' />
-                    <div className='flex flex-col m-5 overflow-hidden'>
-                        <h1 className='text-lg font-bold 2xl:text-xl'>บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง</h1>
-                        <br />
-                        <p>ช่วยคุณได้ทุกงานเล็กใหญ่เรื่องบ้าน ตั้งแต่หา ไอเดียตกแต่ง ออกแบบ เลือกสินค้า และรีโนเวตต่อเติม</p>
-                    </div>
-                </div>
+                <Swiper
+                    modules={[Pagination]}
+                    spaceBetween={30}
+                    slidesPerView={1}
+                    pagination={{clickable: true}}
+                >
+                    <SwiperSlide>
+                        <div className="flex w-full h-60 rounded-lg shadow-lg">
+                            <img src={Image12} alt="" className="w-52 rounded-s-lg" />
+                            <div className="flex flex-col justify-center m-2">
+                                <h1 className="text-2xl">
+                                    บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง
+                                </h1>
+                                <p className="text-lg">
+                                    ช่วยคุณได้ทุกงานเล็กใหญ่เรื่องบ้าน ตั้งแต่หา ไอเดียตกแต่ง
+                                    ออกแบบ เลือกสินค้า และรีโนเวตต่อเติม
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
 
-                <div className='flex w-screen h-60 rounded-lg shadow-lg'>
-                    <img src={Image13} alt="" className='rounded-s-lg' />
-                    <div className='flex flex-col m-5 overflow-hidden'>
-                        <h1 className='text-xl font-bold'>บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด</h1>
-                        <br />
-                        <p>ครอบคลุมงานบริการกว่า 41 ประเภท ไว้ใจได้ ไม่ทิ้งงาน การันตีงานเสร็จตรงเวลา รับประกันงานสูงสุด 1 ปี</p>
-                    </div>
-                </div>
+                    <SwiperSlide>
+                        <div className="flex w-full h-60 rounded-lg shadow-lg">
+                            <img src={Image13} alt="" className="w-52 rounded-s-lg" />
+                            <div className="flex flex-col justify-center m-2">
+                                <h1 className="text-2xl">
+                                    บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด
+                                </h1>
+                                <p className="text-lg">
+                                    ครอบคลุมงานบริการกว่า 41 ประเภท ไว้ใจได้ ไม่ทิ้งงาน
+                                    การันตีงานเสร็จตรงเวลา รับประกันงานสูงสุด 1 ปี
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
 
-                <div className='flex w-screen h-60 rounded-lg shadow-lg'>
-                    <img src={Image14} alt="" className='rounded-s-lg' />
-                    <div className='flex flex-col m-5 overflow-hidden'>
-                        <h1 className='text-xl font-bold'>บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด</h1>
-                        <br />
-                        <p>ผู้ให้บริการหลากหลาย เปรียบเทียบง่าย และสามารถเลือกซื้อสินค้าพร้อมบริการติดตั้งได้</p>
-                    </div>
-                </div>
-
+                    <SwiperSlide>
+                        <div className="flex w-full h-60 rounded-lg shadow-lg">
+                            <img src={Image14} alt="" className="w-52 rounded-s-lg" />
+                            <div className="flex flex-col justify-center m-2">
+                                <h1 className="text-2xl">
+                                    บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด
+                                </h1>
+                                <p className="text-lg">
+                                    ผู้ให้บริการหลากหลาย เปรียบเทียบง่าย
+                                    และสามารถเลือกซื้อสินค้าพร้อมบริการติดตั้งได้
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
             </div>
 
             {/* Footer Section */}

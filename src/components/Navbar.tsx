@@ -48,15 +48,7 @@ function Navbar() {
               to=""
               className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
-              SERVICES
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/admin"
-              className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-            >
-              ADMIN
+              ABOUT
             </Link>
           </li>
         </ul>
@@ -145,11 +137,6 @@ function Navbar() {
               <li>
                 <Link to="/" className="text-2xl hover:text-orange-500">
                   Contact
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
-                  Service
                 </Link>
               </li>
             </ul>

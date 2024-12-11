@@ -26,15 +26,15 @@ function MobilePage() {
       {/* warranty section */}
       <div className="mx-10">
         <div className="flex gap-5">
-          <div className="w-full flex flex-col justify-center items-center shadow-md p-5">
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-2">
             <img src={Image1} alt="" className="w-24 mb-5" />
             <h1 className="text-xl font-bold">จัดส่งฟรี ทั่วประเทศ</h1>
           </div>
-          <div className="w-full flex flex-col justify-center items-center shadow-md">
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-2">
             <img src={Image2} alt="" className="w-24 mb-5" />
             <h1 className="text-xl font-bold">นโยบายการคืนเงิน</h1>
           </div>
-          <div className="w-full flex flex-col justify-center items-center shadow-md">
+          <div className="w-full flex flex-col justify-center items-center shadow-md p-2">
             <img src={Image3} alt="" className="w-24 mb-5" />
             <h1 className="text-xl font-bold">รับประกันสินค้า</h1>
           </div>
