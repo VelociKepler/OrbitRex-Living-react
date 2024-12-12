@@ -38,7 +38,6 @@ function HomePage() {
                 </div>
             </div>
 
-
             {/* Main section Desktop */}
             <div className='hidden lg:block'>
                 <Desktop />
