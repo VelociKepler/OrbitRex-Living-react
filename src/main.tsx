@@ -13,15 +13,15 @@ const theme = createTheme({
       light: "#ffedd5",
       main: "#f97316",
       dark: "#ea580c",
-      contrastText: "#fff",
-    },
-  },
+      contrastText: "#fff"
+    }
+  }
 });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme = {theme}>
       <App />
     </ThemeProvider>
-  </StrictMode>,
+  </StrictMode>
 );

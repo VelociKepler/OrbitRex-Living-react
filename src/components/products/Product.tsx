@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 import Rating from "../Rating";
 import IProduct from "./Product.type";
 import { Link } from "react-router-dom";
-import { IoPricetagsOutline, IoPricetags } from "react-icons/io5";
+import { IoPricetags } from "react-icons/io5";
 
 
 const Product = ({ product }: { product: IProduct }) => {

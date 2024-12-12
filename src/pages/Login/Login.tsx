@@ -7,7 +7,7 @@ import ThirdPartyLogIn from "../../components/Login/ThirdPartyLogIn";
 import Navbar from "../../components/Navbar";
 
 interface InputValues {
-  name?: string;
+  username?: string;
   email: string;
   password: string;
   confirmPassword?: string;
@@ -16,7 +16,7 @@ interface InputValues {
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [inputValues, setInputValues] = useState<InputValues>({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -29,20 +29,20 @@ const Login = () => {
       [id]: value
     }));
   };
+  console.log(inputValues);
 
   const toggleSignInSignUp = () => setIsSignIn(!isSignIn);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const url = process.env.REACT_APP_BASE_URL;
+      const url = import.meta.env.VITE_BACKEND_URL;
 
       // Deconstruct inputValues state
-      const { name, email, password, confirmPassword } = inputValues;
+      const { username, email, password, confirmPassword } = inputValues;
 
       let response;
       if (!isSignIn) {
-        // Sign Up form validation
         if (password !== confirmPassword) {
           toast.error("Passwords do not match!");
           return;
@@ -50,7 +50,7 @@ const Login = () => {
 
         // Register
         response = await axios.post(`${url}/api/user/register`, {
-          name,
+          username,
           email,
           password
         });
@@ -62,13 +62,11 @@ const Login = () => {
         });
       }
 
-      // Handle API response
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         toast.success(
           isSignIn ? "Login successful!" : "Registration successful!"
         );
-        // Redirect logic here
       } else {
         toast.error(response.data.message || "Something went wrong!");
       }
@@ -141,9 +139,9 @@ const Login = () => {
                     label = "Your Name"
                     id = "name"
                     type = "text"
-                    placeholder = "John Doe"
+                    placeholder = "Username"
                     onChange = {handleInputChange}
-                    value = {inputValues.name}
+                    value = {inputValues.username}
                     required
                   />
                   <InputField
