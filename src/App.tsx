@@ -5,6 +5,7 @@ import AdminPage from "./pages/adminpage/adminpage.tsx";
 import ProductPage from "./pages/products/ProductPage.tsx";
 import UserProfilePage from "./pages/UserProfile/UserProfilePage.tsx";
 import ChatWidget from "./components/ChatWidget.tsx";
+import Contact from "./pages/Contact/Contact.tsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/profile/:id" element={<UserProfilePage />} />
         <Route path="/admin" element={<AdminPage />} />

@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <>
       {/* Desktop */}
-      <nav className="hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-black">
+      <nav className="hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-black shadow-md">
         {/* Logo */}
         <Link to="/">
           <div className="lg:text-3xl lg:font-bold">OrbitRex Living</div>
@@ -37,7 +37,7 @@ function Navbar() {
           </li>
           <li>
             <Link
-              to=""
+              to="/contact"
               className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
               CONTACT
@@ -45,7 +45,7 @@ function Navbar() {
           </li>
           <li>
             <Link
-              to=""
+              to="/about"
               className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
               ABOUT
@@ -70,7 +70,7 @@ function Navbar() {
       </nav>
 
       {/* Tablet & Moblie */}
-        <nav className="lg:hidden h-20 flex items-center justify-between px-2 text-black ">
+        <nav className="lg:hidden h-20 flex items-center justify-between px-2 text-black shadow-md ">
 
           {/* Logo */}
           <Link to="/" className="hidden md:block">
@@ -120,7 +120,7 @@ function Navbar() {
             {/* Menu Items */}
             <ul className="mt-16 space-y-8 text-center">
               <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
+                <Link to="/profile" className="text-2xl hover:text-orange-500">
                   Profile
                 </Link>
               </li>
@@ -135,7 +135,7 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
+                <Link to="/contact" className="text-2xl hover:text-orange-500">
                   Contact
                 </Link>
               </li>
