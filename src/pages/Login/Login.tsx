@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Divider } from "@mui/material";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import InputField from "../../components/Login/InputField";
 import ThirdPartyLogIn from "../../components/Login/ThirdPartyLogIn";
 import Navbar from "../../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 interface InputValues {
   username?: string;
@@ -21,6 +22,7 @@ const Login = () => {
     password: "",
     confirmPassword: ""
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -29,17 +31,14 @@ const Login = () => {
       [id]: value
     }));
   };
-  console.log(inputValues);
-
   const toggleSignInSignUp = () => setIsSignIn(!isSignIn);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const url = import.meta.env.VITE_BACKEND_URL;
-
-      // Deconstruct inputValues state
       const { username, email, password, confirmPassword } = inputValues;
+
 
       let response;
       if (!isSignIn) {
@@ -48,44 +47,41 @@ const Login = () => {
           return;
         }
 
-        // Register
-        response = await axios.post(`${url}/api/user/register`, {
-          username,
-          email,
-          password
-        });
+        response = await axios.post(`${url}/api/user/register`, { username, email, password });
       } else {
-        // Login
-        response = await axios.post(`${url}/api/user/login`, {
-          email,
-          password
-        });
+        response = await axios.post(`${url}/api/user/login`, { email, password });
       }
 
-      if (response.data.success) {
+      if (response?.data?.success) {  // Check if response and data exist
         localStorage.setItem("token", response.data.token);
-        toast.success(
-          isSignIn ? "Login successful!" : "Registration successful!"
-        );
+        toast.success(isSignIn ? "Login successful!" : "Registration successful!");
+
+        if (isSignIn) {
+          navigate("/");
+        }
       } else {
-        toast.error(response.data.message || "Something went wrong!");
+        // Explicitly handle user not found error
+        if (response?.data?.message === "User not found") {  // Check for specific message
+          toast.error("User not found. Please check your email.");
+        } else {
+          toast.error(response?.data?.message || "Check Email or Password!"); // Provide more context if possible
+        }
       }
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        console.error(error);
-        toast.error(error.response?.data?.message || "Unexpected error occurred!");
-      } else {
-        console.error("An unknown error occurred:", error);
-        toast.error("An unexpected error occurred!");
-      }
+      console.log(error);
+      toast.error("Something went wrong!");
     }
   };
 
   return (
     <>
+      <ToastContainer
+        position = "top-right"
+        autoClose = {1000}
+      />
       <Navbar />
       <div className = "flex h-screen top-[-64px] items-center justify-center bg-zinc-100 text-center">
-        <div className = "relative top-10 min-h-[560px] w-3/4 overflow-hidden rounded-2xl bg-white shadow-md">
+        <div className = "relative top-10 min-h-[560px] w-3/4 md:max-w-[1080px] overflow-hidden rounded-2xl bg-white shadow-md">
           {/* Forms Container */}
           <div className = "relative z-20 flex h-full">
             {/* Sign In Form */}
