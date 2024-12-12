@@ -37,7 +37,7 @@ function NavbarHome() {
           </li>
           <li>
             <Link
-              to = ""
+              to = "/contact"
               className = "lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
               CONTACT
@@ -48,15 +48,7 @@ function NavbarHome() {
               to = ""
               className = "lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
-              SERVICES
-            </Link>
-          </li>
-          <li>
-            <Link
-              to = "/admin"
-              className = "lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
-            >
-              ADMIN
+              ABOUT
             </Link>
           </li>
         </ul>
@@ -78,7 +70,7 @@ function NavbarHome() {
       </nav>
 
       {/* Tablet & Moblie */}
-      <nav className = "lg:hidden h-20 flex items-center justify-between px-2 text-white">
+      <nav className = "lg:hidden h-20 flex items-center justify-between px-2 text-white ">
 
         {/* Logo */}
         <Link
@@ -132,7 +124,7 @@ function NavbarHome() {
           <ul className = "mt-16 space-y-8 text-center">
             <li>
               <Link
-                to = "/"
+                to = "/profile"
                 className = "text-2xl hover:text-orange-500"
               >
                 Profile
@@ -156,18 +148,10 @@ function NavbarHome() {
             </li>
             <li>
               <Link
-                to = "/"
+                to = "/contact"
                 className = "text-2xl hover:text-orange-500"
               >
                 Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                to = "/"
-                className = "text-2xl hover:text-orange-500"
-              >
-                Service
               </Link>
             </li>
           </ul>
