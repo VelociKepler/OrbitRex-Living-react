@@ -37,7 +37,7 @@ function NavbarHome() {
           </li>
           <li>
             <Link
-              to=""
+              to="/contact"
               className="lg:border-b-2 lg:border-transparent lg:hover:border-orange-500 lg:transition-all lg:duration-200"
             >
               CONTACT
@@ -120,7 +120,7 @@ function NavbarHome() {
             {/* Menu Items */}
             <ul className="mt-16 space-y-8 text-center">
               <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
+                <Link to="/profile" className="text-2xl hover:text-orange-500">
                   Profile
                 </Link>
               </li>
@@ -135,13 +135,8 @@ function NavbarHome() {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
+                <Link to="/contact" className="text-2xl hover:text-orange-500">
                   Contact
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-2xl hover:text-orange-500">
-                  Service
                 </Link>
               </li>
             </ul>

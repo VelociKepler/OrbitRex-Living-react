@@ -26,7 +26,7 @@ function UserProfilePage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
 
       <div className="flex flex-col md:flex-row bg-white text-black">
 
