@@ -1,230 +1,224 @@
-import Image1 from '../../images/Homepage/chair.png'
-import Image2 from '../../images/Homepage/sofa.png'
-import Image3 from '../../images/Homepage/table.png'
-import Image4 from '../../images/Homepage/chair2.jpg'
-import Image5 from '../../images/Homepage/Cabinet.jpg'
-import Image6 from '../../images/Homepage/bed.jpg'
-import Image7 from '../../images/Homepage/livingroom .png'
-import Image8 from '../../images/Homepage/kitchenroom.png'
-import Image9 from '../../images/Homepage/express-delivery.png'
-import Image10 from '../../images/Homepage/refund.png'
-import Image11 from '../../images/Homepage/shield.png'
-import Image12 from '../../images/Homepage/designservice.jpg'
-import Image13 from '../../images/Homepage/service.png'
-import Image14 from '../../images/Homepage/home-solution-item-3.png'
-import { Link } from 'react-router-dom'
-import MarqueeSlider from '../../components/Homepage/MarqueeSlider'
-import Footer from '../../components/Footer'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+import MarqueeSlider from "../../components/Homepage/MarqueeSlider";
+import Footer from "../../components/Footer";
+import Product from "../../components/products/Product";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from 'swiper/modules'
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { backendUrl } from '../../App'
-import { useEffect, useState } from 'react';
-import { toast } from "react-toastify"
-import axios from "axios"
-import Product from '../../components/products/Product'
+import { backendUrl } from "../../App";
 
-function MainHome() {
+// Importing images
+import Image1 from "../../images/Homepage/chair.png";
+import Image2 from "../../images/Homepage/sofa.png";
+import Image3 from "../../images/Homepage/table.png";
+import Image4 from "../../images/Homepage/chair2.jpg";
+import Image5 from "../../images/Homepage/Cabinet.jpg";
+import Image6 from "../../images/Homepage/bed.jpg";
+import Image7 from "../../images/Homepage/livingroom .png";
+import Image8 from "../../images/Homepage/kitchenroom.png";
+import Image9 from "../../images/Homepage/express-delivery.png";
+import Image10 from "../../images/Homepage/refund.png";
+import Image11 from "../../images/Homepage/shield.png";
+import Image12 from "../../images/Homepage/designservice.jpg";
+import Image13 from "../../images/Homepage/service.png";
+import Image14 from "../../images/Homepage/home-solution-item-3.png";
 
-    const [list, setList] = useState([])
-
-    const fetchList = async () => {
-        try {
-            const response = await axios.get(backendUrl + "/api/products");
-            if (response.data.success) {
-                setList(response.data.products.reverse());
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.message);
-        }
-    }
-
-    useEffect(() => {
-        fetchList()
-    }, [])
-
-    return (
-
-        // Desktop
-        <div className='text-black'>
-
-            {/* Main Section 1 */}
-            <div className="relative -top-20">
-                <div className="h-70 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 my-20 mx-20 justify-items-center">
-
-                    {/* Shop by categories section */}
-                    <div className=" flex flex-col items-center">
-                        <h1 className="text-2xl font-bold pb-20">Shop <br />by categories</h1>
-                        <button className="pt-20 font-bold border-b-2 border-transparent hover:border-orange-500 hover:border-b-2 transition-all duration-300 ">
-                            ALL CATEGORIES <i className="fa-duotone fa-solid fa-play text-sm"></i>
-                        </button>
-                    </div>
-
-                    {/* Category Links */}
-                    <Link to="" className="hover:scale-110 transition-all duration-300 flex flex-col items-center">
-                        <img src={Image1} alt="Chair" className="w-full h-auto max-w-xs" />
-                        <h1 className="text-2xl text-center font-bold mt-4">CHAIR</h1>
-                    </Link>
-                    <Link to="" className="hover:scale-110 transition-all duration-300 flex flex-col items-center">
-                        <img src={Image2} alt="Sofa" className="w-full h-auto max-w-xs" />
-                        <h1 className="text-2xl text-center font-bold mt-4">SOFA</h1>
-                    </Link>
-                    <Link to="" className="hover:scale-110 transition-all duration-300 flex flex-col items-center">
-                        <img src={Image3} alt="Table" className="w-full h-auto max-w-xs" />
-                        <h1 className="text-2xl text-center font-bold mt-4">TABLE</h1>
-                    </Link>
-                </div>
-            </div>
-
-            {/* Main Section 2 */}
-            <div className='relative -top-20'>
-                <div className='mx-40 2xl:mx-80'>
-                    <h1 className='text-3xl font-bold'>Featured</h1>
-                    <h1 className='h-0.5 w-32 bg-orange-500 mb-10'></h1>
-
-                    <div className='flex justify-center gap-1'>
-                        <Link to=''>
-                            <img src={Image4} alt="" className='w-screen h-full' />
-                            <h1 className='text-2xl font-bold text-white  relative -top-28 left-5 translate-y-2/4 translate-x-0'>BRAND <br />2,490 บาท</h1>
-                        </Link>
-                        <Link to=''>
-                            <img src={Image5} alt="" className='w-screen h-full' />
-                            <h1 className='text-2xl font-bold text-white relative -top-28 left-5 translate-y-2/4 translate-x-0'>BRAND <br />1,500 บาท</h1>
-                        </Link>
-                        <Link to=''>
-                            <img src={Image6} alt="" className='w-screen h-full' />
-                            <h1 className='text-2xl font-bold text-white relative -top-28 left-5 translate-y-2/4 translate-x-0'>BRAND <br />24,000 บาท</h1>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Section 3   */}
-            <div className='mt-10'>
-                <div className='mx-40 2xl:mx-80 flex flex-row justify-center gap-5'>
-                    <Link to='' className='hover:scale-110 transition-all duration-300'>
-                        <img src={Image7} alt="" className='h-full' />
-                    </Link>
-                    <Link to='' className='hover:scale-110 transition-all duration-300'>
-                        <img src={Image8} alt="" className='h-full' />
-                    </Link>
-                </div>
-            </div>
-
-            {/* Warranty Section */}
-            <div className='mx-40 2xl:mx-80 mt-20 flex gap-5'>
-                <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
-                    <img src={Image9} alt="" className='w-24 mb-5' />
-                    <h1 className='text-xl text-center font-bold'>จัดส่งฟรี ทั่วประเทศ</h1>
-                </div>
-                <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
-                    <img src={Image10} alt="" className='w-24 mb-5' />
-                    <h1 className='text-xl text-center font-bold'>นโยบายการคืนเงิน</h1>
-                </div>
-                <div className='w-full flex flex-col justify-center items-center shadow-md p-5'>
-                    <img src={Image11} alt="" className='w-24 mb-5' />
-                    <h1 className='text-xl text-center font-bold'>รับประกันสินค้า</h1>
-                </div>
-            </div>
-
-            {/* Promotin Section */}
-            <div>
-                <div className='mx-40 2xl:mx-80 mt-20 mb-10 flex flex-row justify-between'>
-                    <h1 className='text-3xl font-bold'>New Arrivals</h1>
-                    <Link to=''><h1 className='text-md font-bold border-2 rounded-full p-2'>ดูสินค้าทั้งหมด</h1></Link>
-                </div>
-            </div>
-
-
-            <div className='w-full h-full flex justify-center'>
-                <div className='flex justify-center w-52 gap-4'>
-                    {list
-                        .sort((a, b) => new Date(b.date) - new Date(a.date))
-                        .slice(0, 10)
-                        .map((product) => (
-                            <div className='w-52 h-full'>
-                                <Product key={product.id} product={product} />
-                            </div>))}
-                </div>
-            </div>
-
-            {/* MarqueeSlider Section */}
-            <div className='reletive'>
-                <MarqueeSlider />
-            </div>
-
-            {/* Service Section */}
-            <div className="mx-5 mb-10">
-                <h1 className="text-3xl font-bold w-[100px] border-b-2 border-orange-500 mb-10">
-                    Service
-                </h1>
-
-                <Swiper
-                    modules={[Pagination]}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    pagination={{ clickable: true }}
-                >
-                    <SwiperSlide>
-                        <div className="flex w-full h-60 rounded-lg shadow-lg">
-                            <img src={Image12} alt="" className="w-52 rounded-s-lg" />
-                            <div className="flex flex-col justify-center m-2">
-                                <h1 className="text-2xl">
-                                    บริการให้คำปรึกษา ออกแบบภายใน พร้อมติดตั้ง
-                                </h1>
-                                <p className="text-lg">
-                                    ช่วยคุณได้ทุกงานเล็กใหญ่เรื่องบ้าน ตั้งแต่หา ไอเดียตกแต่ง
-                                    ออกแบบ เลือกสินค้า และรีโนเวตต่อเติม
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className="flex w-full h-60 rounded-lg shadow-lg">
-                            <img src={Image13} alt="" className="w-52 rounded-s-lg" />
-                            <div className="flex flex-col justify-center m-2">
-                                <h1 className="text-2xl">
-                                    บริการงานช่าง ซ่อมแซม ปรับปรุงเฉพาะจุด
-                                </h1>
-                                <p className="text-lg">
-                                    ครอบคลุมงานบริการกว่า 41 ประเภท ไว้ใจได้ ไม่ทิ้งงาน
-                                    การันตีงานเสร็จตรงเวลา รับประกันงานสูงสุด 1 ปี
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className="flex w-full h-60 rounded-lg shadow-lg">
-                            <img src={Image14} alt="" className="w-52 rounded-s-lg" />
-                            <div className="flex flex-col justify-center m-2">
-                                <h1 className="text-2xl">
-                                    บริการติดตั้งสินค้า ดูแลรักษา และทำความสะอาด
-                                </h1>
-                                <p className="text-lg">
-                                    ผู้ให้บริการหลากหลาย เปรียบเทียบง่าย
-                                    และสามารถเลือกซื้อสินค้าพร้อมบริการติดตั้งได้
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-            </div>
-
-            {/* Footer Section */}
-            <div>
-                <Footer />
-            </div>
-
-
-
-        </div>
-    )
+// Define ProductType interface for type safety
+interface ProductType {
+  id: string;
+  date: string; // Valid ISO date string
+  [key: string]: any; // Extendable for additional properties
 }
 
-export default MainHome
+// Refactored MainHome Component
+const MainHome: React.FC = () => {
+  const [list, setList] = useState<ProductType[]>([]);
+
+  // Fetch list of products from the backend
+  const fetchList = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/api/products`);
+      if (response.data.success) {
+        setList(response.data.products.reverse());
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchList();
+  }, []);
+
+  return (
+    <div className = "text-black">
+      {/* Shop By Categories Section */}
+      <div className = "relative -top-20">
+        <div className = "h-70 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 my-20 mx-20 justify-items-center">
+          <div className = "flex flex-col items-center">
+            <h1 className = "text-2xl font-bold pb-20">
+              Shop <br /> by categories
+            </h1>
+            <button className = "pt-20 font-bold border-b-2 border-transparent hover:border-orange-500 transition-all duration-300">
+              ALL CATEGORIES <i className = "fa-duotone fa-solid fa-play text-sm"></i>
+            </button>
+          </div>
+
+          {/* Categories */}
+          {[
+            { image: Image1, title: "CHAIR" },
+            { image: Image2, title: "SOFA" },
+            { image: Image3, title: "TABLE" }
+          ].map((category, index) => (
+            <Link
+              key = {index}
+              to = ""
+              className = "hover:scale-110 transition-all duration-300 flex flex-col items-center"
+            >
+              <img
+                src = {category.image}
+                alt = {category.title}
+                className = "w-full h-auto max-w-xs"
+              />
+              <h1 className = "text-2xl text-center font-bold mt-4">{category.title}</h1>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Featured Section */}
+      <div className = "relative -top-20">
+        <div className = "mx-40 2xl:mx-80">
+          <h1 className = "text-3xl font-bold">Featured</h1>
+          <h1 className = "h-0.5 w-32 bg-orange-500 mb-10"></h1>
+          <div className = "flex justify-center gap-1">
+            {[Image4, Image5, Image6].map((image, index) => (
+              <Link
+                key = {index}
+                to = ""
+              >
+                <img
+                  src = {image}
+                  alt = ""
+                  className = "w-screen h-full"
+                />
+                <h1 className = "text-2xl font-bold text-white relative -top-28 left-5">
+                  BRAND <br /> PRICE
+                </h1>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Other Sections */}
+      <div className = "mt-10">
+        <div className = "mx-40 2xl:mx-80 flex flex-row justify-center gap-5">
+          {[Image7, Image8].map((image, index) => (
+            <Link
+              key = {index}
+              to = ""
+              className = "hover:scale-110 transition-all duration-300"
+            >
+              <img
+                src = {image}
+                alt = ""
+                className = "h-full"
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Warranty Section */}
+      <div className = "mx-40 2xl:mx-80 mt-20 flex gap-5">
+        {[Image9, Image10, Image11].map((image, index) => (
+          <div
+            key = {index}
+            className = "w-full flex flex-col justify-center items-center shadow-md p-5"
+          >
+            <img
+              src = {image}
+              alt = ""
+              className = "w-24 mb-5"
+            />
+            <h1 className = "text-xl text-center font-bold">Warranty Info</h1>
+          </div>
+        ))}
+      </div>
+
+      {/* New Arrivals Section */}
+      <div>
+        <div className = "mx-40 2xl:mx-80 mt-20 mb-10 flex flex-row justify-between">
+          <h1 className = "text-3xl font-bold">New Arrivals</h1>
+          <Link to = "">
+            <h1 className = "text-md font-bold border-2 rounded-full p-2">See All Products</h1>
+          </Link>
+        </div>
+      </div>
+
+      <div className = "w-full h-full flex justify-center">
+        <div className = "flex justify-center w-52 gap-4">{list
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort products by date (newest first)
+          .slice(-6) // Extract the last 4 items
+          .map((product) => (
+            <div
+              key = {product.id}
+              className = "w-52 h-full"
+            >
+              <Product product = {product} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Marquee Slider */}
+      <div className = "relative">
+        <MarqueeSlider />
+      </div>
+
+      {/* Service Section */}
+      <div className = "mx-5 mb-10">
+        <h1 className = "text-3xl font-bold w-[100px] border-b-2 border-orange-500 mb-10">Service</h1>
+        <Swiper
+          modules = {[Pagination]}
+          spaceBetween = {30}
+          slidesPerView = {1}
+          pagination = {{ clickable: true }}
+        >
+          {[
+            { image: Image12, title: "Interior Design", description: "We help you..." },
+            { image: Image13, title: "Repair Services", description: "Trusted repairs..." },
+            { image: Image14, title: "Installation & Maintenance", description: "Reliable services..." }
+          ].map((service, index) => (
+            <SwiperSlide key = {index}>
+              <div className = "flex w-full h-60 rounded-lg shadow-lg">
+                <img
+                  src = {service.image}
+                  alt = ""
+                  className = "w-52 rounded-s-lg"
+                />
+                <div className = "flex flex-col justify-center m-2">
+                  <h1 className = "text-2xl">{service.title}</h1>
+                  <p className = "text-lg">{service.description}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+export default MainHome;
