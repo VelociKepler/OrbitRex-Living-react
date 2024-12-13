@@ -26,6 +26,7 @@ import Image11 from "../../images/Homepage/shield.png";
 import Image12 from "../../images/Homepage/designservice.jpg";
 import Image13 from "../../images/Homepage/service.png";
 import Image14 from "../../images/Homepage/home-solution-item-3.png";
+import { IProduct } from "../../components/products/Product.type.ts";
 
 // Define ProductType interface for type safety
 interface ProductType {
@@ -37,6 +38,7 @@ interface ProductType {
 // Refactored MainHome Component
 const MainHome: React.FC = () => {
   const [list, setList] = useState<ProductType[]>([]);
+  console.log(list);
 
   // Fetch list of products from the backend
   const fetchList = async () => {
@@ -57,6 +59,7 @@ const MainHome: React.FC = () => {
     fetchList();
   }, []);
 
+  // @ts-ignore
   return (
     <div className = "text-black">
       {/* Shop By Categories Section */}
@@ -164,19 +167,35 @@ const MainHome: React.FC = () => {
         </div>
       </div>
 
-      <div className = "w-full h-full flex justify-center">
-        <div className = "flex justify-center w-52 gap-4">{list
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort products by date (newest first)
-          .slice(-6) // Extract the last 4 items
-          .map((product) => (
-            <div
-              key = {product.id}
-              className = "w-52 h-full"
-            >
-              <Product product = {product} />
-            </div>
-          ))}
-        </div>
+      <div className = "w-full h-full flex justify-center gap-4">
+        {list
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(-4) // get only last 4 products
+          .map((product) => {
+            // Transform `ProductType` to align with `IProduct`
+            const transformedProduct: IProduct = {
+              _id: product._id, // Assuming ObjectId is represented as a string
+              name: product.name,
+              description: product.description,
+              category: product.category,
+              pricing: product.pricing,
+              stock: product.stock,
+              images: product.images, // URLs or paths
+              color: product.color,
+              rating: 5,
+              numReviews: 0,
+              metadata: product.metadata
+            };
+
+            return (
+              <div
+                key = {transformedProduct._id}
+                className = "w-52 h-full"
+              >
+                <Product product = {transformedProduct} />
+              </div>
+            );
+          })}
       </div>
 
       {/* Marquee Slider */}

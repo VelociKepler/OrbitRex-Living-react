@@ -9,7 +9,6 @@ export interface Product {
   _id: number;
   id: number;
   name: string;
-  imageThumbnail: string;
   image: string[];
   description: string;
   detail?: string;
