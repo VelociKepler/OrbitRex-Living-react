@@ -10,7 +10,7 @@ export interface IProduct {
   name: string;
   description: string;
   category: string;
-  pricing: string;
+  pricing: number;
   stock: {
     total: number;
     status: "in_stock" | "out_of_stock";
