@@ -8,6 +8,8 @@ import ChatWidget from "./components/ChatWidget.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import ProductScreen from "./pages/products/ProductScreen.tsx";
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL
+
 function App() {
   return (
     <Router>
