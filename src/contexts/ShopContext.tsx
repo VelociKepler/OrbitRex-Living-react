@@ -16,11 +16,18 @@ interface ShopContextProviderProps {
 }
 
 export const ShopContextProvider: React.FC<ShopContextProviderProps> = ({ children }) => {
+  // Global State
   const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
 
+  //จะทำอะไรเพิ่ม
+
   // Context value
-  const value: ShopContextType = { isSignIn, setIsSignIn, backendUrl };
+  const value: ShopContextType = {
+    isSignIn,
+    setIsSignIn,
+    backendUrl
+  };
 
   return (
     <ShopContext.Provider value = {value}>

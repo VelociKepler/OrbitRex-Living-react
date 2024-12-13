@@ -19,8 +19,34 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper/modules'
 import "swiper/css";
 import "swiper/css/pagination";
+import { backendUrl } from '../../App'
+import { useEffect, useState } from 'react';
+import { toast } from "react-toastify"
+import axios from "axios"
+import Product from '../../components/products/Product'
 
 function MainHome() {
+
+    const [list, setList] = useState([])
+
+    const fetchList = async () => {
+        try {
+            const response = await axios.get(backendUrl + "/api/products");
+            if (response.data.success) {
+                setList(response.data.products.reverse());
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchList()
+    }, [])
+
     return (
 
         // Desktop
@@ -57,8 +83,8 @@ function MainHome() {
             {/* Main Section 2 */}
             <div className='relative -top-20'>
                 <div className='mx-40 2xl:mx-80'>
-                    <h1 className='text-3xl font-bold'>New Arrivals</h1>
-                    <h1 className='h-0.5 w-44 bg-orange-500 mb-10'></h1>
+                    <h1 className='text-3xl font-bold'>Featured</h1>
+                    <h1 className='h-0.5 w-32 bg-orange-500 mb-10'></h1>
 
                     <div className='flex justify-center gap-1'>
                         <Link to=''>
@@ -107,13 +133,27 @@ function MainHome() {
 
             {/* Promotin Section */}
             <div>
-                <div className='mx-40 2xl:mx-80 mt-20 flex flex-row justify-end'>
+                <div className='mx-40 2xl:mx-80 mt-20 mb-10 flex flex-row justify-between'>
+                    <h1 className='text-3xl font-bold'>New Arrivals</h1>
                     <Link to=''><h1 className='text-md font-bold border-2 rounded-full p-2'>ดูสินค้าทั้งหมด</h1></Link>
                 </div>
             </div>
 
+
+            <div className='w-full h-full flex justify-center'>
+                <div className='flex justify-center w-52 gap-4'>
+                    {list
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 10)
+                        .map((product) => (
+                            <div className='w-52 h-full'>
+                                <Product key={product.id} product={product} />
+                            </div>))}
+                </div>
+            </div>
+
             {/* MarqueeSlider Section */}
-            <div>
+            <div className='reletive'>
                 <MarqueeSlider />
             </div>
 
@@ -127,7 +167,7 @@ function MainHome() {
                     modules={[Pagination]}
                     spaceBetween={30}
                     slidesPerView={1}
-                    pagination={{clickable: true}}
+                    pagination={{ clickable: true }}
                 >
                     <SwiperSlide>
                         <div className="flex w-full h-60 rounded-lg shadow-lg">

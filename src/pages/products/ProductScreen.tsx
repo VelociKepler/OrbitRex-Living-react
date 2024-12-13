@@ -1,38 +1,54 @@
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import React, { useState } from "react";
 import products from "../../products.tsx";
 import Navbar from "../../components/Navbar.tsx";
 import Rating from "../../components/Rating.tsx";
 
+// TypeScript interfaces for props
 interface ProductActionsProps {
-  price: number; // Assuming price is a numerical value
-  colors: string[]; // Assuming colors is an array of strings
-  activeColor: string; // The currently selected color
-  onColorSelect: (color: string) => void; // Function to handle color selection
-  onAddToCart: () => void; // Function to handle adding the product to the cart
+  price: string;
+  colors: string[] | undefined;
+  activeColor: string;
+  onColorSelect: (color: string) => void;
+  onAddToCart: () => void;
 }
 
-const ProductScreen = () => {
-  const { id: productId } = useParams();
+interface ImageGalleryProps {
+  images: string[];
+  activeImage: string;
+  onImageClick: (image: string) => void;
+}
+
+interface ProductDetailsProps {
+  product: typeof products[0];
+}
+
+// Main ProductScreen Component
+const ProductScreen: React.FC = () => {
+  const { id: productId } = useParams<{ id: string }>();
   const product = products.find((product) => product._id === productId);
 
   // State
-  const [activeImage, setActiveImage] = useState(product?.images[0] || "");
-  const [activeColor, setActiveColor] = useState(product?.color && Object.values(product.color)[0]);
+  const [activeImage, setActiveImage] = useState(product?.images?.[0] || "");
+  const [activeColor, setActiveColor] = useState(
+    product?.color ? Object.values(product.color)[0] : ""
+  );
   const [cartCount, setCartCount] = useState(0);
-
-  // Guard clause
+  console.log(cartCount);
+  // Guard Clause
   if (!product) return <div>Product not found</div>;
 
   // Format price
-  const formattedPrice = product.pricing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const formattedPrice = product.pricing
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  // Add to Cart Handler
+  // Event Handlers
   const handleAddToCart = () => {
-    setCartCount(cartCount + 1);
+    setCartCount((prevCount) => prevCount + 1);
     toast.success("Item added to cart!");
   };
 
@@ -47,6 +63,7 @@ const ProductScreen = () => {
         >
           Go Back
         </Link>
+
         <div className = "mt-2">
           <Row>
             {/* Image Gallery */}
@@ -79,7 +96,7 @@ const ProductScreen = () => {
         {/* Toast Container */}
         <ToastContainer
           position = "top-right"
-          autoClose = {3000}
+          autoClose = {1000}
         />
       </div>
     </>
@@ -88,8 +105,14 @@ const ProductScreen = () => {
 
 export default ProductScreen;
 
-// Reusable Image Gallery Component
-const ImageGallery = ({ images, activeImage, onImageClick }) => (
+/* --- Reusable Components --- */
+
+// ImageGallery Component
+const ImageGallery: React.FC<ImageGalleryProps> = ({
+                                                     images,
+                                                     activeImage,
+                                                     onImageClick
+                                                   }) => (
   <div
     className = "ecommerce-gallery"
     data-mdb-ecommerce-gallery-init
@@ -113,8 +136,8 @@ const ImageGallery = ({ images, activeImage, onImageClick }) => (
       {/* Thumbnail Images */}
       {images.map((image, index) => (
         <div
-          className = "col-3 mt-1"
           key = {index}
+          className = "col-3 mt-1"
         >
           <img
             onClick = {() => onImageClick(image)}
@@ -130,8 +153,8 @@ const ImageGallery = ({ images, activeImage, onImageClick }) => (
   </div>
 );
 
-// Reusable Product Details Component
-const ProductDetails = ({ product }) => (
+// ProductDetails Component
+const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => (
   <ListGroup variant = "flush">
     {/* Name and Description */}
     <ListGroup.Item>
@@ -154,13 +177,15 @@ const ProductDetails = ({ product }) => (
         <p
           key = {key}
           className = "text-[#1D1F26]"
-        >{`${key.charAt(0).toUpperCase() + key.slice(1)}: ${value} cm`}</p>
+        >{`${capitalize(
+          key
+        )}: ${value} cm`}</p>
       ))}
     </ListGroup.Item>
   </ListGroup>
 );
 
-// Reusable Product Actions Component
+// ProductActions Component
 const ProductActions: React.FC<ProductActionsProps> = ({
                                                          price,
                                                          colors,
@@ -184,20 +209,20 @@ const ProductActions: React.FC<ProductActionsProps> = ({
       {colors && (
         <ListGroup.Item>
           <Card.Subtitle>Color</Card.Subtitle>
-          <div className = "mb-4">
-            <Card.Title className = "mb-2">Available Colors</Card.Title>
-            <div className = "flex gap-2">
-              {Object.entries(colors).map(([key, value]) => (
-                <div
-                  key = {key}
-                  onClick = {() => onColorSelect(value)}
-                  className = {`w-8 h-8 rounded-full cursor-pointer border-2 ${
-                    activeColor === value ? "border-orange-500" : "border-gray-200"
-                  }`}
-                  style = {{ backgroundColor: value }}
-                ></div>
-              ))}
-            </div>
+          <Card.Title className = "mb-2">Available Colors</Card.Title>
+          <div className = "flex gap-2">
+            {Object.entries(colors).map(([key, value]) => (
+              <div
+                key = {key}
+                onClick = {() => onColorSelect(value)}
+                className = {`w-8 h-8 rounded-full cursor-pointer border-2 ${
+                  activeColor === value
+                    ? "border-orange-500"
+                    : "border-gray-200"
+                }`}
+                style = {{ backgroundColor: value }}
+              />
+            ))}
           </div>
         </ListGroup.Item>
       )}
@@ -215,3 +240,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({
     </ListGroup>
   </Card>
 );
+
+/* --- Utility Functions --- */
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
