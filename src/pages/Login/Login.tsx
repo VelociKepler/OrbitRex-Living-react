@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Divider } from "@mui/material";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import InputField from "../../components/Login/InputField";
 import ThirdPartyLogIn from "../../components/Login/ThirdPartyLogIn";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { ShopContext, ShopContextType } from "../../contexts/ShopContext.tsx";
 
 interface InputValues {
   username?: string;
@@ -14,8 +15,18 @@ interface InputValues {
   confirmPassword?: string;
 }
 
-const Login = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
+const Login: React.FC = () => {
+  const useShopContext = (): ShopContextType => {
+    const context = useContext(ShopContext);
+    if (!context) {
+      throw new Error("useShopContext must be used within a ShopContextProvider");
+    }
+    return context;
+  };
+
+  const { isSignIn, setIsSignIn, backendUrl } = useShopContext();
+
+
   const [inputValues, setInputValues] = useState<InputValues>({
     username: "",
     email: "",
@@ -26,59 +37,69 @@ const Login = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setInputValues((prevValues) => ({
-      ...prevValues,
-      [id]: value
-    }));
+
+    switch (id) {
+      case "username":
+        setInputValues((prev) => ({ ...prev, username: value }));
+        break;
+      case "email":
+        setInputValues((prev) => ({ ...prev, email: value }));
+        break;
+      case "password":
+        setInputValues((prev) => ({ ...prev, password: value }));
+        break;
+      case "confirmPassword":
+        setInputValues((prev) => ({ ...prev, confirmPassword: value }));
+        break;
+      default:
+        break;
+    }
   };
   const toggleSignInSignUp = () => setIsSignIn(!isSignIn);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { username, email, password, confirmPassword } = inputValues;
+
     try {
-      const url = import.meta.env.VITE_BACKEND_URL;
-      const { username, email, password, confirmPassword } = inputValues;
-
-
       let response;
       if (!isSignIn) {
-        if (password !== confirmPassword) {
+        if (!password || !confirmPassword || password !== confirmPassword) {
           toast.error("Passwords do not match!");
           return;
         }
 
-        response = await axios.post(`${url}/api/user/register`, { username, email, password });
+        response = await axios.post(`${backendUrl}/api/user/register`, { username, email, password });
       } else {
-        response = await axios.post(`${url}/api/user/login`, { email, password });
+        if (!email || !password) {
+          toast.error("Please fill out all required fields!");
+          return;
+        }
+
+        response = await axios.post(`${backendUrl}/api/user/login`, { email, password });
       }
 
-      if (response?.data?.success) {  // Check if response and data exist
+      if (response?.data?.success) {
         localStorage.setItem("token", response.data.token);
         toast.success(isSignIn ? "Login successful!" : "Registration successful!");
-
-        if (isSignIn) {
-          navigate("/");
-        }
+        if (isSignIn) navigate("/");
+        setIsSignIn(true);
       } else {
-        // Explicitly handle user not found error
-        if (response?.data?.message === "User not found") {  // Check for specific message
+        const errorMessage = response?.data?.message;
+        if (errorMessage === "User not found") {
           toast.error("User not found. Please check your email.");
         } else {
-          toast.error(response?.data?.message || "Check Email or Password!"); // Provide more context if possible
+          toast.error(errorMessage || "Check Email or Password!");
         }
       }
     } catch (error: unknown) {
-      console.log(error);
-      toast.error("Something went wrong!");
+      console.error(error);
+      toast.error("Something went wrong! Please try again later.");
     }
   };
 
   return (
     <>
-      <ToastContainer
-        position = "top-right"
-        autoClose = {1000}
-      />
       <Navbar />
       <div className = "flex h-screen top-[-64px] items-center justify-center bg-zinc-100 text-center">
         <div className = "relative top-10 min-h-[560px] w-3/4 md:max-w-[1080px] overflow-hidden rounded-2xl bg-white shadow-md">
@@ -133,7 +154,7 @@ const Login = () => {
                 <div className = "mb-2">
                   <InputField
                     label = "Your Name"
-                    id = "name"
+                    id = "username"
                     type = "text"
                     placeholder = "Username"
                     onChange = {handleInputChange}

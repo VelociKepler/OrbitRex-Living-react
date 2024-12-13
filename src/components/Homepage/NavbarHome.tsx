@@ -11,7 +11,7 @@ function NavbarHome() {
   return (
     <>
       {/* Desktop */}
-      <nav className = "hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
+      <nav className = " duration-300 hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
         {/* Logo */}
         <Link to = "/">
           <div className = "lg:text-3xl lg:font-bold">OrbitRex Living</div>
@@ -60,11 +60,14 @@ function NavbarHome() {
             className = "lg:px-5 lg:py-2 lg:rounded-full lg:pr-10 lg:text-black lg:outline-none"
             placeholder = "Search"
           />
-          <button className = "lg:absolute lg:top-1/2 lg:right-14 lg:transform lg:-translate-y-2.5 lg:text-gray-300 lg:px-5 lg:rounded-full">
+          <button className = "lg:absolute lg:top-1/2 lg:right-28 lg:transform lg:-translate-y-2.5 lg:text-gray-300 lg:px-5 lg:rounded-full">
             <i className = "fa-solid fa-magnifying-glass"></i>
           </button>
           <Link to = "/login">
             <i className = "fa-solid fa-circle-user lg:text-3xl lg:ml-7 lg:translate-y-1"></i>
+          </Link>
+          <Link to = "/cart">
+            <i className="fa-solid fa-cart-shopping lg:text-3xl lg:ml-7 lg:translate-y-1"></i>
           </Link>
         </div>
       </nav>
@@ -99,7 +102,7 @@ function NavbarHome() {
         {/* Right Button */}
         <div className = "flex gap-4">
           <Link to = "">
-            <i className = "fa-solid fa-basket-shopping text-3xl md:text-4xl"></i>
+            <i className="fa-solid fa-cart-shopping text-3xl md:text-4xl"></i>
           </Link>
           <button onClick = {toggleMenu}>
             <i className = "fa-solid fa-bars text-3xl md:text-4xl"></i>

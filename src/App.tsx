@@ -9,6 +9,8 @@ import Contact from "./pages/Contact/Contact.tsx";
 import ProductScreen from "./pages/products/ProductScreen.tsx";
 import { ToastContainer } from "react-toastify";
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL
+
 function App() {
   return (
     <>

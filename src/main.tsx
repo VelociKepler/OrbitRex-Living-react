@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ShopContextProvider from "./contexts/ShopContext.tsx";
 
 const theme = createTheme({
   palette: {
@@ -11,14 +12,27 @@ const theme = createTheme({
       main: "#f97316",
       dark: "#ea580c",
       contrastText: "#fff"
+    },
+    secondary: {
+      main: "#4caf50" // Example addition for flexibility
     }
+  },
+  typography: {
+    fontFamily: "'Roboto', 'Arial', sans-serif" // Example
   }
 });
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Failed to find the root element.");
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <ThemeProvider theme = {theme}>
-      <App />
+      <ShopContextProvider>
+        <App />
+      </ShopContextProvider>
     </ThemeProvider>
   </StrictMode>
 );
