@@ -3,21 +3,20 @@ import Rating from "../Rating";
 import { IProduct } from "./Product.type";
 import { Link } from "react-router-dom";
 import { IoPricetags } from "react-icons/io5";
-import { backendUrl } from "../../App";
 
 
 const Product = ({ product }: { product: IProduct }) => {
   return (
     <div>
       <Card>
-        <Link to = {`${backendUrl}/api/products/${product._id}`}>
+        <Link to = {`/products/${product._id}`}>
           <Card.Img
             variant = "top"
             src = {product.images[0]}
           />
         </Link>
         <Card.Body>
-          <Link to = {`${backendUrl}/api/products/${product._id}`}>
+          <Link to = {`/products/${product._id}`}>
             <Card.Title
               as = "div"
               className = "product-title text-xl"

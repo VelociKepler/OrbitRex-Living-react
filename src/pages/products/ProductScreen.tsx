@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import products from "../../products.tsx";
-import Navbar from "../../components/Navbar.tsx";
-import Rating from "../../components/Rating.tsx";
+import Navbar from "../../components/Navbar";
+import Rating from "../../components/Rating";
+import { IProduct } from "../../components/products/Product.type";
+import { fetchProducts } from "../../services/productService"; // Extracted API service
+import { capitalize, formatPrice } from "../../utils/helpers"; // Utility functions
+import { backendUrl } from "../../App.tsx";
 
-// TypeScript interfaces for props
+// TypeScript Props
 interface ProductActionsProps {
   price: string;
   colors: string[] | undefined;
@@ -23,42 +26,62 @@ interface ImageGalleryProps {
 }
 
 interface ProductDetailsProps {
-  product: typeof products[0];
+  product: IProduct;
 }
 
-// Main ProductScreen Component
 const ProductScreen: React.FC = () => {
+  // const { backendUrl } = useContext(ShopContext) as ShopContextType;
   const { id: productId } = useParams<{ id: string }>();
-  const product = products.find((product) => product._id === productId);
 
   // State
-  const [activeImage, setActiveImage] = useState(product?.images?.[0] || "");
-  const [activeColor, setActiveColor] = useState(
-    product?.color ? Object.values(product.color)[0] : ""
-  );
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [activeImage, setActiveImage] = useState<string>("");
+  const [activeColor, setActiveColor] = useState<string>("");
   const [cartCount, setCartCount] = useState(0);
-  console.log(cartCount);
-  // Guard Clause
+  console.log(`Cart count: ${cartCount}`);
+
+  console.log(products);
+
+  // Fetch product data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productList = await fetchProducts(backendUrl);
+        setProducts(productList);
+      } catch (error: any) {
+        toast.error("Failed to load products.");
+        console.error(error.message);
+      }
+    };
+    fetchData();
+  }, [backendUrl]);
+
+  // Find Current Product
+  const product = products.find((p) => p._id.toString() === productId);
+
+  // Initialize active image and color
+  useEffect(() => {
+    if (product) {
+      setActiveImage(product.images?.[0] || "");
+      setActiveColor(product.color ? Object.values(product.color)[0] : "");
+    }
+  }, [product]);
+
+  // Return early if product is not found
   if (!product) return <div>Product not found</div>;
 
-  // Format price
-  const formattedPrice = product.pricing
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-  // Event Handlers
+  // Handlers
   const handleAddToCart = () => {
     setCartCount((prevCount) => prevCount + 1);
     toast.success("Item added to cart!");
   };
 
   return (
-    <>
+    <div className = " h-screen">
       <Navbar />
-      <div className = "max-w-screen-xl mx-auto mt-[96px]">
-        {/* Back Link */}
+      <div className = "container mt-[80px] max-w-screen-lg ">
         <Link
-          className = "btn btn-light"
+          className = "btn btn-light mt-4 mb-2"
           to = "/products"
         >
           Go Back
@@ -80,10 +103,10 @@ const ProductScreen: React.FC = () => {
               <ProductDetails product = {product} />
             </Col>
 
-            {/* Actions (Add to Cart and Colors) */}
+            {/* Product Actions */}
             <Col md = {3}>
               <ProductActions
-                price = {formattedPrice}
+                price = {formatPrice(product.pricing)}
                 colors = {product.color}
                 activeColor = {activeColor}
                 onColorSelect = {setActiveColor}
@@ -92,100 +115,64 @@ const ProductScreen: React.FC = () => {
             </Col>
           </Row>
         </div>
-
-        {/* Toast Container */}
-        <ToastContainer
-          position = "top-right"
-          autoClose = {1000}
-        />
       </div>
-    </>
+    </div>
   );
 };
 
 export default ProductScreen;
 
-/* --- Reusable Components --- */
-
-// ImageGallery Component
+// Reusable Image Gallery Component
 const ImageGallery: React.FC<ImageGalleryProps> = ({
                                                      images,
                                                      activeImage,
                                                      onImageClick
                                                    }) => (
-  <div
-    className = "ecommerce-gallery"
-    data-mdb-ecommerce-gallery-init
-    data-mdb-zoom-effect = "true"
-    data-mdb-auto-height = "true"
-  >
-    <div className = "row py-3 shadow-5">
-      {/* Main Image */}
-      <div className = "col-12 mb-1">
-        <div
-          className = "lightbox"
-          data-mdb-lightbox-init
-        >
-          <img
-            src = {`/${activeImage}`}
-            alt = "Main Gallery Image"
-            className = "ecommerce-gallery-main-img active w-100 rounded"
-          />
-        </div>
-      </div>
-      {/* Thumbnail Images */}
+  <div>
+    <div className = "main-image mb-3">
+      <img
+        src = {`${activeImage}`}
+        alt = "Main Gallery Image"
+        className = "w-100 rounded border-2 border-gray-100"
+      />
+    </div>
+    <div className = "grid grid-cols-4 gap-1">
       {images.map((image, index) => (
-        <div
+        <img
           key = {index}
-          className = "col-3 mt-1"
-        >
-          <img
-            onClick = {() => onImageClick(image)}
-            src = {`/${image}`}
-            alt = {`Gallery image ${index + 1}`}
-            className = {`w-100 cursor-pointer rounded ${
-              activeImage === image ? "border-2 border-orange-500" : ""
-            }`}
-          />
-        </div>
+          onClick = {() => onImageClick(image)}
+          src = {`${image}`}
+          alt = {`Gallery image ${index + 1}`}
+          className = {`thumbnail rounded border-2 border-gray-50 ${activeImage === image ? "active border-orange-500" : ""}`}
+        />
       ))}
     </div>
   </div>
 );
 
-// ProductDetails Component
+// Reusable Product Details Component
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => (
   <ListGroup variant = "flush">
-    {/* Name and Description */}
     <ListGroup.Item>
-      <h3 className = "text-2xl text-[#1D1F26]">{product.name}</h3>
+      <h3 className = "text-2xl text-black font-bold mb-2">{product.name}</h3>
       <p>{product.description}</p>
     </ListGroup.Item>
-
-    {/* Rating */}
     <ListGroup.Item>
       <Rating
         value = {product.rating}
         text = {`${product.numReviews} reviews`}
       />
     </ListGroup.Item>
-
-    {/* Dimensions */}
     <ListGroup.Item>
-      <Card.Title className = "mb-2">Size</Card.Title>
-      {Object.entries(product.metadata.dimensions).map(([key, value]) => (
-        <p
-          key = {key}
-          className = "text-[#1D1F26]"
-        >{`${capitalize(
-          key
-        )}: ${value} cm`}</p>
+      <Card.Title>Dimensions</Card.Title>
+      {Object.entries(product.metadata?.dimensions || {}).map(([key, value]) => (
+        <p key = {key}>{`${capitalize(key)}: ${value} cm`}</p>
       ))}
     </ListGroup.Item>
   </ListGroup>
 );
 
-// ProductActions Component
+// Reusable Product Actions Component
 const ProductActions: React.FC<ProductActionsProps> = ({
                                                          price,
                                                          colors,
@@ -195,30 +182,24 @@ const ProductActions: React.FC<ProductActionsProps> = ({
                                                        }) => (
   <Card>
     <ListGroup variant = "flush">
-      {/* Price */}
       <ListGroup.Item>
         <Row>
           <Col>Price:</Col>
           <Col>
-            <strong>{price} Bath</strong>
+            <strong>{price} Baht</strong>
           </Col>
         </Row>
       </ListGroup.Item>
-
-      {/* Color Selector */}
       {colors && (
         <ListGroup.Item>
-          <Card.Subtitle>Color</Card.Subtitle>
-          <Card.Title className = "mb-2">Available Colors</Card.Title>
-          <div className = "flex gap-2">
+          <Card.Subtitle>Available Colors</Card.Subtitle>
+          <div className = "color-selector">
             {Object.entries(colors).map(([key, value]) => (
               <div
                 key = {key}
                 onClick = {() => onColorSelect(value)}
-                className = {`w-8 h-8 rounded-full cursor-pointer border-2 ${
-                  activeColor === value
-                    ? "border-orange-500"
-                    : "border-gray-200"
+                className = {`color-selection ${
+                  activeColor === value ? "active" : ""
                 }`}
                 style = {{ backgroundColor: value }}
               />
@@ -226,12 +207,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({
           </div>
         </ListGroup.Item>
       )}
-
-      {/* Add to Cart Button */}
       <ListGroup.Item>
         <Button
           className = "btn-block"
-          type = "button"
           onClick = {onAddToCart}
         >
           Add to Cart
@@ -240,6 +218,3 @@ const ProductActions: React.FC<ProductActionsProps> = ({
     </ListGroup>
   </Card>
 );
-
-/* --- Utility Functions --- */
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
