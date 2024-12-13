@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <>
       {/* Desktop */}
-      <nav className = "hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-black shadow-md">
+      <nav className = " fixed bg-white top-0 hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-black shadow-md">
         {/* Logo */}
         <Link to = "/">
           <div className = "lg:text-3xl lg:font-bold">OrbitRex Living</div>

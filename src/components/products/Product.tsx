@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import Rating from "../Rating";
-import IProduct from "./Product.type";
+import { IProduct } from "./Product.type";
 import { Link } from "react-router-dom";
 import { IoPricetags } from "react-icons/io5";
 

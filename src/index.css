@@ -43,5 +43,9 @@
     animation-play-state: paused;
 }
 
+.scrolled {
+    background-color: black;
+}
+
 
 

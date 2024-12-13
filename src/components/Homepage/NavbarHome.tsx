@@ -11,7 +11,7 @@ function NavbarHome() {
   return (
     <>
       {/* Desktop */}
-      <nav className = "hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
+      <nav className = " duration-300 hidden lg:w-full lg:h-20 lg:flex lg:items-center lg:justify-around lg:z-10 lg:text-white">
         {/* Logo */}
         <Link to = "/">
           <div className = "lg:text-3xl lg:font-bold">OrbitRex Living</div>
