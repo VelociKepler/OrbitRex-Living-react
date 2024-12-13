@@ -1,5 +1,5 @@
 #Vercel
-This site was built using: [OrbitRex Living](https://orbit-rex-living.vercel.app/).
+This site was built using: [OrbitRex Living](https://orbit-rex-living.vercel.server/).
 
 # To start deve nakub
 run
@@ -34,7 +34,7 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ['./tsconfig.node.json', './tsconfig.server.json'],
       tsconfigRootDir: import.meta.dirname,
     },
   },
