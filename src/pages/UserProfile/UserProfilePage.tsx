@@ -49,7 +49,7 @@ function UserProfilePage() {
   return (
     <>
       <Navbar />
-      <div className = "flex flex-col md:flex-row bg-white text-black">
+      <div className = "flex flex-col md:flex-row bg-white text-black absolute top-20 w-full">
         <Sidebar
           activeTab = {activeTab}
           onTabChange = {handleTabChange}
@@ -120,7 +120,7 @@ const ProfileTab: React.FC<ProfileTabProps> = ({ profile }) => (
   <div className = "flex flex-col items-center gap-10">
     <h1 className = "text-2xl font-bold">{profile.name || "Unknown User"}</h1>
     <img
-      src = "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      src = "https://static.vecteezy.com/system/resources/previews/005/129/844/non_2x/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"
       alt = "User avatar"
       className = "w-56 h-56 rounded-full"
     />
