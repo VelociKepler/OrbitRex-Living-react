@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     return context;
   };
 
-  const { isSignIn, setIsSignIn, backendUrl, setLogin } = useShopContext();
+  const { isSignIn, setIsSignIn, backendUrl, setIsLogin } = useShopContext();
 
 
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -83,7 +83,7 @@ const Login: React.FC = () => {
         localStorage.setItem("token", response.data.token);
         toast.success(isSignIn ? "Login successful!" : "Registration successful!");
         if (isSignIn) navigate("/");
-        setLogin(true);
+        setIsLogin(true);
       } else {
         const errorMessage = response?.data?.message;
         if (errorMessage === "User not found") {
