@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext  } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -9,6 +9,7 @@ import { IProduct } from "../../components/products/Product.type";
 import { fetchProducts } from "../../services/productService"; // Extracted API service
 import { capitalize, formatPrice } from "../../utils/helpers"; // Utility functions
 import { backendUrl } from "../../App.tsx";
+import { ShopContext } from "../../contexts/ShopContext.tsx";
 
 // TypeScript Props
 interface ProductActionsProps {
@@ -38,6 +39,13 @@ const ProductScreen: React.FC = () => {
   const [activeImage, setActiveImage] = useState<string>("");
   const [activeColor, setActiveColor] = useState<string>("");
   const [cartCount, setCartCount] = useState(0);
+
+  const shopContext = useContext(ShopContext);
+  if (!shopContext) {
+    throw new Error("ShopContext is not available");
+  }
+  const { addToCart } = shopContext;
+
   console.log(`Cart count: ${cartCount}`);
 
   console.log(products);
@@ -71,9 +79,15 @@ const ProductScreen: React.FC = () => {
   if (!product) return <div>Product not found</div>;
 
   // Handlers
-  const handleAddToCart = () => {
-    setCartCount((prevCount) => prevCount + 1);
-    toast.success("Item added to cart!");
+  const handleAddToCart = async () => {
+    try {
+      await addToCart(product._id.toString(), activeColor);
+      setCartCount((prevCount) => prevCount + 1);
+      toast.success("Item added to cart!");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("Failed to add item to cart.");
+    }
   };
 
   return (
