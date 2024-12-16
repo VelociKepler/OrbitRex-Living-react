@@ -31,6 +31,7 @@ const ProductPage = () => {
     fetchData();
   }, [backendUrl]);
 
+  // controlled image when loading
   const handleImageLoad = (index: number) => {
     setImageLoaded((prevState) => {
       const updatedState = [...prevState];

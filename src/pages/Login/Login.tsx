@@ -7,6 +7,7 @@ import ThirdPartyLogIn from "../../components/Login/ThirdPartyLogIn";
 import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ShopContext, ShopContextType } from "../../contexts/ShopContext.tsx";
+import { backendUrl } from "../../App.tsx";
 
 interface InputValues {
   username?: string;
@@ -24,7 +25,7 @@ const Login: React.FC = () => {
     return context;
   };
 
-  const { isSignIn, setIsSignIn, backendUrl, setIsLogin } = useShopContext();
+  const { isSignIn, setIsSignIn, setIsLogin } = useShopContext();
 
 
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -33,6 +34,7 @@ const Login: React.FC = () => {
     password: "",
     confirmPassword: ""
   });
+
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
