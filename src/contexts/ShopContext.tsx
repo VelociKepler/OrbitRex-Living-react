@@ -5,6 +5,10 @@ export interface ShopContextType {
   isSignIn: boolean;
   setIsSignIn: React.Dispatch<React.SetStateAction<boolean>>;
   backendUrl: string;
+  isLogin: boolean;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Create the context with proper typing
@@ -19,6 +23,8 @@ export const ShopContextProvider: React.FC<ShopContextProviderProps> = ({ childr
   // Global State
   const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   //จะทำอะไรเพิ่ม
 
@@ -26,7 +32,11 @@ export const ShopContextProvider: React.FC<ShopContextProviderProps> = ({ childr
   const value: ShopContextType = {
     isSignIn,
     setIsSignIn,
-    backendUrl
+    backendUrl,
+    isLogin,
+    setIsLogin,
+    isMenuOpen,
+    setIsMenuOpen
   };
 
   return (
