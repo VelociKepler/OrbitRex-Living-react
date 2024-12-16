@@ -82,7 +82,7 @@ function NavbarHome() {
           <Link to = "/cart">
             <i className = "fa-solid fa-cart-shopping lg:text-3xl lg:ml-7 lg:translate-y-1"></i>
           </Link>
-          <Link to = "/isLogin">
+          <Link to = "/Login">
             <i className = {`fa-solid fa-circle-user lg:text-3xl lg:ml-7 lg:translate-y-1 ${isLogin ? "hidden" : ""}`}></i>
           </Link>
           {isLogin && (
