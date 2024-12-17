@@ -176,7 +176,7 @@ const Cart = () => {
         {/* Price + Remove Button */}
         <div className = "w-40 flex flex-col items-center gap-2 text-center">
           <p className = "font-semibold">
-            ${((item.pricing || 0) * (cartData?.quantity || 1)).toFixed(2)}
+            ${((item.pricing || 0) * (cartData?.quantity || 1)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
         </div>
         <button
@@ -215,7 +215,8 @@ const Cart = () => {
 
           {/* Total Price */}
           <div className = "mt-8 w-full flex flex-col justify-end items-end">
-            <h1 className = "text-2xl font-bold text-end">Total price: ${totalPrice}</h1>
+            <h1 className = "text-2xl font-bold text-end">Total price:
+              ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
             <Link
               to = "/checkout"
               className = "flex items-center justify-center"
