@@ -70,7 +70,9 @@ const MainHome: React.FC = () => {
               Shop <br /> by categories
             </h1>
             <button className = "pt-20 font-bold border-b-2 border-transparent hover:border-orange-500 transition-all duration-300">
-              ALL CATEGORIES <i className = "fa-duotone fa-solid fa-play text-sm"></i>
+              <Link to = "/products">
+                ALL CATEGORIES <i className = "fa-duotone fa-solid fa-play text-sm"></i>
+              </Link>
             </button>
           </div>
 

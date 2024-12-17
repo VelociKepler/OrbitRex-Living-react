@@ -15,6 +15,8 @@ export interface ShopContextType {
   setCartItem: React.Dispatch<React.SetStateAction<{ id: string; color: string; quantity: number }[]>>;
   updateCartItem: (id: string, updatedProperties: Partial<{ color: string; quantity: number }>) => void;
   removeCartItem: (id: string) => void; // Add the remove function to the context
+  searchProduct: string;
+  setSearchProduct: React.Dispatch<React.SetStateAction<string>>;
 }
 
 // Create the context with proper typing
@@ -34,6 +36,7 @@ export const ShopContextProvider: React.FC<ShopContextProviderProps> = ({ childr
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // Menu state
   const [cartCount, setCartCount] = useState<number>(0); // Cart count
   const [cartItem, setCartItem] = useState<{ id: string; color: string; quantity: number }[]>([]); // Cart items
+  const [searchProduct, setSearchProduct] = useState<string>("");
 
   /**
    * Update a cart item by `id` (e.g., change its `color` or `quantity` properties).
@@ -74,7 +77,9 @@ export const ShopContextProvider: React.FC<ShopContextProviderProps> = ({ childr
     cartItem,
     setCartItem,
     updateCartItem, // Add the update function to the context
-    removeCartItem // Add the remove function to the context
+    removeCartItem, // Add the remove function to the context
+    searchProduct,
+    setSearchProduct
   };
 
   return <ShopContext.Provider value = {value}>{children}</ShopContext.Provider>;

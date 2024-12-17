@@ -30,9 +30,9 @@ function HomePage() {
         />
       </div>
       <div className = {`hidden lg:block lg:bg-black lg:bg-opacity-50 lg:absolute lg:top-80 lg:left-40 lg:p-10 lg:rounded-xl lg:transition-all lg:duration-1000 ${isVisible ? "lg:opacity-100" : "lg:opacity-0 lg:translate-y-10"}`}>
-        <h1 className = "lg:text-6xl lg:font-bold lg:text-white">Furniture, decor,<br />and beyond</h1>
+        <h1 className = "lg:text-6xl lg:font-bold lg:text-white mb-8">Furniture, decor,<br />and beyond</h1>
         <Link
-          to = "/shop"
+          to = "/products"
           className = "lg:bg-orange-500 lg:text-white lg:px-5 lg:py-2 lg:rounded-full lg:mt-5 lg:text-xl"
         >Shop</Link>
       </div>
@@ -47,7 +47,7 @@ function HomePage() {
         <div className = {`bg-black bg-opacity-50 absolute top-40 md:top-80 left-10 py-3 px-10 rounded-xl transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0 translate-y-10"}`}>
           <h1 className = "text-xl md:text-5xl font-bold text-white">Furniture, decor,<br />and beyond</h1>
           <Link
-            to = "/shop"
+            to = "/products"
             className = "bg-orange-500 hover:bg-orange-600 text-white px-4 py-1 rounded-full mt-4"
           >Shop</Link>
         </div>

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ShopContext, ShopContextType } from "../contexts/ShopContext";
 import { toast } from "react-toastify";
 
 function Navbar() {
+
 
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -16,7 +17,19 @@ function Navbar() {
     return context;
   };
 
-  const { isLogin, isMenuOpen, setIsMenuOpen, cartCount, setIsLogin } = useShopContext();
+  const {
+    isLogin,
+    isMenuOpen,
+    setIsMenuOpen,
+    cartCount,
+    setIsLogin,
+    setSearchProduct,
+    searchProduct
+  } = useShopContext();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchProduct(event.target.value); // Update context with the input value
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -76,6 +89,8 @@ function Navbar() {
             type = "text"
             className = "lg:px-5 lg:py-2 lg:rounded-full lg:pr-10 lg:text-black lg:outline-none border-2"
             placeholder = "Search"
+            onChange = {handleInputChange}
+            value = {searchProduct}
           />
           <button className = "lg:absolute lg:top-1/2 lg:right-28 lg:transform lg:-translate-y-2.5 lg:text-gray-300 lg:px-5 lg:rounded-full">
             <i className = "fa-solid fa-magnifying-glass"></i>
