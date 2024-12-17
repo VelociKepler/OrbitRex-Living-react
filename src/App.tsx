@@ -9,6 +9,7 @@ import Contact from "./pages/Contact/Contact.tsx";
 import ProductScreen from "./pages/products/ProductScreen.tsx";
 import { ToastContainer } from "react-toastify";
 import Cart from "./pages/Cart/Cart.tsx";
+import CheckoutPage from "./pages/Checkout/CheckoutPage.tsx";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -54,6 +55,10 @@ function App() {
           <Route
             path = "/cart"
             element = {<Cart />}
+          />
+          <Route
+            path = "/checkout"
+            element = {<CheckoutPage />}
           />
         </Routes>
       </Router>

@@ -7,6 +7,7 @@ import { IProduct, ICartItem } from "../../components/products/Product.type";
 import { backendUrl } from "../../App";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 // Define Props for the CartItem component
 interface CartItemProps {
@@ -215,12 +216,17 @@ const Cart = () => {
           {/* Total Price */}
           <div className = "mt-8 w-full flex flex-col justify-end items-end">
             <h1 className = "text-2xl font-bold text-end">Total price: ${totalPrice}</h1>
-            <button
-              type = "button"
-              className = "text-white w-25 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            <Link
+              to = "/checkout"
+              className = "flex items-center justify-center"
             >
-              Check out
-            </button>
+              <button
+                type = "button"
+                className = " text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Check out
+              </button>
+            </Link>
           </div>
         </div>
       </div>

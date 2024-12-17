@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ShopContextProvider from "./contexts/ShopContext.tsx";
+import { ProductProvider } from "./contexts/ProductContext.tsx";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +32,9 @@ createRoot(rootElement).render(
   <StrictMode>
     <ThemeProvider theme = {theme}>
       <ShopContextProvider>
-        <App />
+        <ProductProvider>
+          <App />
+        </ProductProvider>
       </ShopContextProvider>
     </ThemeProvider>
   </StrictMode>
