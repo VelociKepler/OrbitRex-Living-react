@@ -95,8 +95,15 @@ const Login: React.FC = () => {
         }
       }
     } catch (error: unknown) {
-      console.error(error);
-      toast.error("Something went wrong! Please try again later.");
+      if (axios.isAxiosError(error) && error.response) {
+        // Extract the error message sent from the backend
+        const errorMessage = error.response.data?.message || "An unknown error occurred!";
+        toast.error(errorMessage); // Display the error message in toast
+      } else {
+        // Handle unexpected errors
+        console.error("Unexpected error: ", error);
+        toast.error("Something went wrong! Please try again.");
+      }
     }
   };
 
