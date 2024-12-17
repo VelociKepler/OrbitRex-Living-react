@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { ShopContext, ShopContextType } from "../contexts/ShopContext";
+import { toast } from "react-toastify";
 
 function Navbar() {
 
@@ -15,7 +16,7 @@ function Navbar() {
     return context;
   };
 
-  const { isLogin, isMenuOpen, setIsMenuOpen, cartCount } = useShopContext();
+  const { isLogin, isMenuOpen, setIsMenuOpen, cartCount, setIsLogin } = useShopContext();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -98,10 +99,25 @@ function Navbar() {
               <button onClick = {toggleUserMenu}>
                 <i className = "fa-solid fa-circle-user lg:text-3xl lg:ml-7 lg:translate-y-1"></i>
               </button>
-              <div className = {`absolute top-12 right-0 rounded-lg shadow-black shadow-2xl h-60 w-60 bg-white text-black p-8 transition-transform duration-1000 z-40 ${isUserMenuOpen ? "" : "hidden"}`}>
+              <div
+                className = {`absolute top-12 right-0 rounded-lg shadow-black shadow-2xl h-60 w-60 bg-white text-black p-8 transition-transform duration-1000 z-40 ${
+                  isUserMenuOpen ? "" : "hidden"
+                }`}
+              >
                 <ul className = "flex flex-col gap-2">
                   <li className = "font-bold">
                     <Link to = "/profile">Profile</Link>
+                  </li>
+                  <li className = "font-bold">
+                    <button
+                      onClick = {() => {
+                        setIsLogin(false); // Set isLogin to false
+                        toast.success("Logged out successfully!"); // Optional toast notification
+                      }}
+                      className = "text-red-500 hover:text-red-700"
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </div>
