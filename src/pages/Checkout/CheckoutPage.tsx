@@ -29,8 +29,11 @@ const CheckoutPage: React.FC = () => {
 
   const [paymentMethod, setPaymentMethod] = useState("credit-card");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    const { name, value } = e.target;
+    if (name) {
+      setAddress({ ...address, [name]: value });
+    }
   };
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
