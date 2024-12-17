@@ -31,7 +31,7 @@ const Product = ({ product }: { product: IProduct }) => {
           <Card.Text
             as = "h2"
             className = "text-2xl font-bold mt-2 italic"
-          >฿{product.pricing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
+          >${product.pricing.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
           <Card.Text
             className = "text-sm mt-2 flex items-center"
           >

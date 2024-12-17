@@ -5,6 +5,12 @@ export interface Size {
   height?: number;
 }
 
+export interface ICartItem {
+  id: string;
+  quantity: number;
+  color?: string; // Optional if not all items are color-dependent
+}
+
 export interface IProduct {
   _id: number; // Assuming ObjectId is represented as a string
   name: string;
