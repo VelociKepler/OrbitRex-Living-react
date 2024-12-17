@@ -15,7 +15,7 @@ function Navbar() {
     return context;
   };
 
-  const { isLogin, isMenuOpen, setIsMenuOpen } = useShopContext();
+  const { isLogin, isMenuOpen, setIsMenuOpen, cartCount } = useShopContext();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -79,8 +79,16 @@ function Navbar() {
           <button className = "lg:absolute lg:top-1/2 lg:right-28 lg:transform lg:-translate-y-2.5 lg:text-gray-300 lg:px-5 lg:rounded-full">
             <i className = "fa-solid fa-magnifying-glass"></i>
           </button>
-          <Link to = "/cart">
+          <Link
+            to = "/cart"
+            className = "relative"
+          >
             <i className = "fa-solid fa-cart-shopping lg:text-3xl lg:ml-7 lg:translate-y-1"></i>
+            {cartCount > 0 && (
+              <span className = "absolute top-[-12px] right-[-10px] bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
           <Link to = "/login">
             <i className = {`fa-solid fa-circle-user lg:text-3xl lg:ml-7 lg:translate-y-1 ${isLogin ? "hidden" : ""}`}></i>

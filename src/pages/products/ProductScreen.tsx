@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -9,11 +9,12 @@ import { IProduct } from "../../components/products/Product.type";
 import { fetchProducts } from "../../services/productService"; // Extracted API service
 import { capitalize, formatPrice } from "../../utils/helpers"; // Utility functions
 import { backendUrl } from "../../App.tsx";
+import { ShopContext, ShopContextType } from "../../contexts/ShopContext.tsx";
 
 // TypeScript Props
 interface ProductActionsProps {
   price: string;
-  colors: string[] | undefined;
+  colors?: string[];
   activeColor: string;
   onColorSelect: (color: string) => void;
   onAddToCart: () => void;
@@ -30,17 +31,22 @@ interface ProductDetailsProps {
 }
 
 const ProductScreen: React.FC = () => {
-  // const { backendUrl } = useContext(ShopContext) as ShopContextType;
   const { id: productId } = useParams<{ id: string }>();
+
+  const useShopContext = (): ShopContextType => {
+    const context = useContext(ShopContext);
+    if (!context) {
+      throw new Error("useShopContext must be used within a ShopContextProvider");
+    }
+    return context;
+  };
+
+  const { setCartCount, setCartItem } = useShopContext();
 
   // State
   const [products, setProducts] = useState<IProduct[]>([]);
   const [activeImage, setActiveImage] = useState<string>("");
   const [activeColor, setActiveColor] = useState<string>("");
-  const [cartCount, setCartCount] = useState(0);
-  console.log(`Cart count: ${cartCount}`);
-
-  console.log(products);
 
   // Fetch product data
   useEffect(() => {
@@ -54,7 +60,7 @@ const ProductScreen: React.FC = () => {
       }
     };
     fetchData();
-  }, [backendUrl]);
+  }, []);
 
   // Find Current Product
   const product = products.find((p) => p._id.toString() === productId);
@@ -70,16 +76,42 @@ const ProductScreen: React.FC = () => {
   // Return early if product is not found
   if (!product) return <div>Product not found</div>;
 
-  // Handlers
+  // Modified handleAddToCart
   const handleAddToCart = () => {
-    setCartCount((prevCount) => prevCount + 1);
-    toast.success("Item added to cart!");
+    if (!productId) return;
+
+    // Update the cart items
+    setCartItem((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.id === productId && item.color === activeColor
+      );
+
+      // If an item with the same ID and color already exists, keep the cart unchanged
+      if (existingItem) {
+        toast.info("This item is already in your cart!");
+        return prevItems;
+      }
+
+      // If the product is not found in the cart, add it as a new item
+      const updatedItems = [
+        ...prevItems,
+        { id: productId, color: activeColor, quantity: 1 }
+      ];
+
+      // Increment the cart count only if a new item is added
+      setCartCount((prevCount) => prevCount + 1);
+
+      // Show a success message
+      toast.success("Item added to cart!");
+
+      return updatedItems;
+    });
   };
 
   return (
-    <div className = " h-screen">
+    <div className = "h-screen">
       <Navbar />
-      <div className = "container mt-[80px] max-w-screen-lg ">
+      <div className = "container mt-[80px] max-w-screen-lg">
         <Link
           className = "btn btn-light mt-4 mb-2"
           to = "/products"
@@ -123,11 +155,7 @@ const ProductScreen: React.FC = () => {
 export default ProductScreen;
 
 // Reusable Image Gallery Component
-const ImageGallery: React.FC<ImageGalleryProps> = ({
-                                                     images,
-                                                     activeImage,
-                                                     onImageClick
-                                                   }) => (
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, activeImage, onImageClick }) => (
   <div>
     <div className = "main-image mb-3">
       <img
@@ -143,7 +171,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           onClick = {() => onImageClick(image)}
           src = {`${image}`}
           alt = {`Gallery image ${index + 1}`}
-          className = {`thumbnail rounded border-2 border-gray-50 ${activeImage === image ? "active border-orange-500" : ""}`}
+          className = {`thumbnail rounded border-2 border-gray-50 ${
+            activeImage === image ? "active border-orange-500" : ""
+          }`}
         />
       ))}
     </div>

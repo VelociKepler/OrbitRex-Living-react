@@ -8,13 +8,14 @@ import ChatWidget from "./components/ChatWidget.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import ProductScreen from "./pages/products/ProductScreen.tsx";
 import { ToastContainer } from "react-toastify";
+import Cart from "./pages/Cart/Cart.tsx";
 
-export const backendUrl = import.meta.env.VITE_BACKEND_URL
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose = {500} />
       <Router>
         <ChatWidget />
         <Routes>
@@ -49,6 +50,10 @@ function App() {
           <Route
             path = "/products/:id"
             element = {<ProductScreen />}
+          />
+          <Route
+            path = "/cart"
+            element = {<Cart />}
           />
         </Routes>
       </Router>
