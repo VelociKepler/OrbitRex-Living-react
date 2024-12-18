@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar";
 import { ShopContext, ShopContextType } from "../../contexts/ShopContext";
 import { useContext, useEffect, useState, useCallback } from "react";
 import { fetchProducts } from "../../services/productService";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { toast } from "react-toastify";
 import { IProduct, ICartItem } from "../../components/products/Product.type";
 import { backendUrl } from "../../App";
@@ -9,7 +10,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-// Define Props for the CartItem component
 interface CartItemProps {
   item: IProduct;
   cartData?: ICartItem;
@@ -20,6 +20,7 @@ interface CartItemProps {
 const Cart = () => {
   const [products, setProducts] = useState<IProduct[]>([]); // Stores the list of products
   const [matchedItems, setMatchedItems] = useState<IProduct[]>([]); // Matched products in cart
+  const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
 
   // Attach to ShopContext
   const useShopContext = (): ShopContextType => {
@@ -30,7 +31,7 @@ const Cart = () => {
     return context;
   };
 
-  const { cartItem, updateCartItem, removeCartItem } = useShopContext();
+  const { cartItem, updateCartItem, removeCartItem, isLogin } = useShopContext(); // Get isLogin from context
 
   // Fetch products (memoized to prevent unnecessary re-fetches)
   const fetchData = useCallback(async () => {
@@ -68,22 +69,44 @@ const Cart = () => {
     }
   }, [cartItem, products]);
 
-  // Calculate Total Price
-// Calculate Total Price (now summing up VAT and subtotal at the end of the component)
+  // Handle navigation based on the login status
+  const handleCheckout = () => {
+    if (!isLogin) {
+      navigate("/login"); // Redirect to login page if not logged in
+    } else {
+      navigate("/checkout"); // Proceed to checkout if logged in
+    }
+  };
 
-  // CartItem Component
+  // Define VAT rate (e.g. 15%)
+  const VAT_RATE = 0.15;
+
+  // Calculate Subtotal (sum of all items' prices without VAT)
+  const subtotal = cartItem
+    .reduce((total, item) => {
+      const product = products.find((product) => product._id.toString() === item.id);
+      return total + (product?.pricing || 0) * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+  // Calculate VAT
+  const vatAmount = (parseFloat(subtotal) * VAT_RATE).toFixed(2);
+
+  // Calculate total price
+  const totalPrice = (parseFloat(subtotal) + parseFloat(vatAmount)).toFixed(2);
+
+  // Cart Item Component
   const CartItem: React.FC<CartItemProps> = ({ item, cartData, updateCartItem, removeCartItem }) => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Handles dropdown visibility
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleColorSelect = (color: string) => {
       updateCartItem(item._id.toString(), { color });
       setIsDropdownOpen(false);
     };
 
-
     return (
       <div className = "relative w-full flex justify-between items-center gap-6 border rounded p-2">
-        {/* Image Column */}
+        {/* Image */}
         <div className = "w-32 h-32 flex-shrink-0">
           <img
             src = {item.images[0]}
@@ -92,12 +115,12 @@ const Cart = () => {
           />
         </div>
 
-        {/* Product Name Column */}
+        {/* Product Name */}
         <div className = "flex-1 text-center">
           <h2 className = "font-semibold text-lg">{item.name}</h2>
         </div>
 
-        {/* Custom Color Dropdown */}
+        {/* Color Dropdown */}
         <div className = "w-40 text-center flex flex-col items-center relative">
           <div
             onClick = {() => setIsDropdownOpen(!isDropdownOpen)}
@@ -130,7 +153,7 @@ const Cart = () => {
           )}
         </div>
 
-        {/* Quantity Column */}
+        {/* Quantity */}
         <div className = "w-36 flex justify-center items-center gap-2">
           <button
             onClick = {() => {
@@ -138,7 +161,6 @@ const Cart = () => {
                 updateCartItem(item._id.toString(), { quantity: cartData.quantity - 1 });
               }
             }}
-            className = ""
           >
             <FiMinusCircle
               size = {24}
@@ -169,41 +191,27 @@ const Cart = () => {
           </button>
         </div>
 
-        {/* Price + Remove Button */}
+        {/* Price + Remove */}
         <div className = "w-40 flex flex-col items-center gap-2 text-center">
           <p className = "font-semibold">
-            ${((item.pricing || 0) * (cartData?.quantity || 1)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            ${((item.pricing || 0) * (cartData?.quantity || 1))
+            .toFixed(2)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
+          <button
+            onClick = {() => removeCartItem(item._id.toString())}
+            className = "absolute top-3 right-3"
+          >
+            <IoIosCloseCircle
+              size = {26}
+              className = "text-red-500 hover:text-red-600"
+            />
+          </button>
         </div>
-        <button
-          onClick = {() => removeCartItem(item._id.toString())}
-          className = "absolute top-3 right-3"
-        >
-          <IoIosCloseCircle
-            size = {26}
-            className = "text-red-500 hover:text-red-600"
-          />
-        </button>
       </div>
     );
   };
-
-  // Define VAT rate (e.g., 20%)
-  const VAT_RATE = 0.15;
-
-// Calculate Subtotal (sum of all items' prices without VAT)
-  const subtotal = cartItem
-    .reduce((total, item) => {
-      const product = products.find((product) => product._id.toString() === item.id);
-      return total + (product?.pricing || 0) * item.quantity;
-    }, 0)
-    .toFixed(2);
-
-// Calculate VAT amount
-  const vatAmount = (parseFloat(subtotal) * VAT_RATE).toFixed(2);
-
-// Calculate total price
-  const totalPrice = (parseFloat(subtotal) + parseFloat(vatAmount)).toFixed(2);
 
   return (
     <div>
@@ -214,7 +222,6 @@ const Cart = () => {
 
         <div className = "flex flex-col gap-8 items-center">
           {matchedItems.length === 0 ? (
-            // Render a message if the cart is empty
             <div className = "text-center my-10">
               <h2 className = "text-lg font-semibold text-gray-600">Please add products to your cart</h2>
               <Link
@@ -225,7 +232,6 @@ const Cart = () => {
               </Link>
             </div>
           ) : (
-            // Render the cart items if present
             matchedItems.map((item) => {
               const cartData = cartItem.find((cart) => cart.id === item._id.toString());
               return (
@@ -241,25 +247,17 @@ const Cart = () => {
           )}
 
           {matchedItems.length > 0 && (
-            // Render Total Price and Checkout Button only if items exist
             <div className = "mt-8 w-full flex flex-col justify-end items-end">
-              <h1 className = "text-xl font-medium text-end">Subtotal:
-                ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-              <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%):
-                ${vatAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-              <h1 className = "text-2xl font-bold text-end">Total price:
-                ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-              <Link
-                to = "/checkout"
-                className = "flex items-center justify-center"
+              <h1 className = "text-xl font-medium text-end">Subtotal: ${subtotal}</h1>
+              <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%): ${vatAmount}</h1>
+              <h1 className = "text-2xl font-bold text-end">Total price: ${totalPrice}</h1>
+              <button
+                onClick = {handleCheckout} // Attach handleCheckout here
+                type = "button"
+                className = "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                <button
-                  type = "button"
-                  className = "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Check out
-                </button>
-              </Link>
+                Check out
+              </button>
             </div>
           )}
         </div>
