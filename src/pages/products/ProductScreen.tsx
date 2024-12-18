@@ -216,7 +216,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
         <Row>
           <Col>Price:</Col>
           <Col>
-            <strong>{price} Baht</strong>
+            <strong>{price} $</strong>
           </Col>
         </Row>
       </ListGroup.Item>

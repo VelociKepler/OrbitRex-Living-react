@@ -69,12 +69,7 @@ const Cart = () => {
   }, [cartItem, products]);
 
   // Calculate Total Price
-  const totalPrice = cartItem
-    .reduce((total, item) => {
-      const product = products.find((product) => product._id.toString() === item.id);
-      return total + (product?.pricing || 0) * item.quantity;
-    }, 0)
-    .toFixed(2);
+// Calculate Total Price (now summing up VAT and subtotal at the end of the component)
 
   // CartItem Component
   const CartItem: React.FC<CartItemProps> = ({ item, cartData, updateCartItem, removeCartItem }) => {
@@ -84,6 +79,7 @@ const Cart = () => {
       updateCartItem(item._id.toString(), { color });
       setIsDropdownOpen(false);
     };
+
 
     return (
       <div className = "relative w-full flex justify-between items-center gap-6 border rounded p-2">
@@ -192,6 +188,23 @@ const Cart = () => {
     );
   };
 
+  // Define VAT rate (e.g., 20%)
+  const VAT_RATE = 0.15;
+
+// Calculate Subtotal (sum of all items' prices without VAT)
+  const subtotal = cartItem
+    .reduce((total, item) => {
+      const product = products.find((product) => product._id.toString() === item.id);
+      return total + (product?.pricing || 0) * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+// Calculate VAT amount
+  const vatAmount = (parseFloat(subtotal) * VAT_RATE).toFixed(2);
+
+// Calculate total price
+  const totalPrice = (parseFloat(subtotal) + parseFloat(vatAmount)).toFixed(2);
+
   return (
     <div>
       <Navbar />
@@ -215,6 +228,10 @@ const Cart = () => {
 
           {/* Total Price */}
           <div className = "mt-8 w-full flex flex-col justify-end items-end">
+            <h1 className = "text-xl font-medium text-end">Subtotal:
+              ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+            <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%):
+              ${vatAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
             <h1 className = "text-2xl font-bold text-end">Total price:
               ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
             <Link
@@ -223,7 +240,7 @@ const Cart = () => {
             >
               <button
                 type = "button"
-                className = " text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className = "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Check out
               </button>

@@ -44,29 +44,31 @@ const ProductPage = () => {
   return (
     <>
       <Navbar />
-      <div className = "m-5 pt-10">
-        <h1>Latest Products</h1>
-        <Row className = "g-4 max-width-lg pt-10">
-          {list.map((product: any, index: number) => (
-            <Col
-              key = {product._id}
-              sm = {12}
-              md = {6}
-              lg = {4}
-              xl = {3}
-            >
-              <Product product = {product} />
-              <img
-                src = {product.imageUrl} // Assuming the product has an imageUrl property
-                alt = {product.name}
-                style = {{ display: "none" }} // Hide image initially
-                onLoad = {() => handleImageLoad(index)} // Set image loaded on load
-              />
-              {/* Render the Product component once image is loaded */}
-              {imageLoaded[index] && <Product product = {product} />}
-            </Col>
-          ))}
-        </Row>
+      <div className = "m-5 pt-12">
+        <div className = "max-w-screen-lg mx-auto">
+          <h1 className = "text-xl font-bold text-gray-400">Latest Products</h1>
+          <Row className = "g-4 pt-10">
+            {list.map((product: any, index: number) => (
+              <Col
+                key = {product._id}
+                sm = {12}
+                md = {6}
+                lg = {4}
+                xl = {3}
+              >
+                <Product product = {product} />
+                <img
+                  src = {product.imageUrl} // Assuming the product has an imageUrl property
+                  alt = {product.name}
+                  style = {{ display: "none" }} // Hide image initially
+                  onLoad = {() => handleImageLoad(index)} // Set image loaded on load
+                />
+                {/* Render the Product component once image is loaded */}
+                {imageLoaded[index] && <Product product = {product} />}
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
     </>
   );
