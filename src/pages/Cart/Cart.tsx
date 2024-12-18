@@ -248,9 +248,18 @@ const Cart = () => {
 
           {matchedItems.length > 0 && (
             <div className = "mt-8 w-full flex flex-col justify-end items-end">
-              <h1 className = "text-xl font-medium text-end">Subtotal: ${subtotal}</h1>
-              <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%): ${vatAmount}</h1>
-              <h1 className = "text-2xl font-bold text-end">Total price: ${totalPrice}</h1>
+              <div className = "flex w-1/3 justify-between text-gray-500">
+                <h1 className = "text-xl font-medium text-end">Subtotal:</h1>
+                <h1 className = "text-xl font-medium text-end">${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              </div>
+              <div className = "flex w-1/3 justify-between text-gray-500">
+                <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%):</h1>
+                <h1 className = "text-xl font-medium text-end">${vatAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              </div>
+              <div className = "flex w-1/3 justify-between">
+                <h1 className = "text-2xl font-bold text-end">Total price:</h1>
+                <h1 className = "text-2xl font-bold text-end">${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              </div>
               <button
                 onClick = {handleCheckout} // Attach handleCheckout here
                 type = "button"
