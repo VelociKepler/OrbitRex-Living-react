@@ -43,8 +43,6 @@ const CheckoutPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // You can handle submission (e.g., API call) here
-    console.log("Address:", address);
-    console.log("Payment Method:", paymentMethod);
   };
 
   return (

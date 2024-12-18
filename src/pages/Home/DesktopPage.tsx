@@ -38,7 +38,6 @@ interface ProductType {
 // Refactored MainHome Component
 const MainHome: React.FC = () => {
   const [list, setList] = useState<ProductType[]>([]);
-  console.log(list);
 
   // Fetch list of products from the backend
   const fetchList = async () => {

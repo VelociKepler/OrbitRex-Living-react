@@ -56,7 +56,6 @@ const ProductScreen: React.FC = () => {
         setProducts(productList);
       } catch (error: any) {
         toast.error("Failed to load products.");
-        console.error(error.message);
       }
     };
     fetchData();

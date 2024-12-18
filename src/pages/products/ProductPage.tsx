@@ -25,7 +25,6 @@ const ProductPage = () => {
         setList(productList);
       } catch (error: any) {
         toast.error("Failed to load products.");
-        console.error(error.message);
       }
     };
     fetchData();
