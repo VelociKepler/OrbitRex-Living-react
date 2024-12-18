@@ -213,39 +213,55 @@ const Cart = () => {
         <p className = "my-4 font-medium">Total Items: {cartItem.length}</p>
 
         <div className = "flex flex-col gap-8 items-center">
-          {matchedItems.map((item) => {
-            const cartData = cartItem.find((cart) => cart.id === item._id.toString());
-            return (
-              <CartItem
-                key = {item._id}
-                item = {item}
-                cartData = {cartData}
-                updateCartItem = {updateCartItem}
-                removeCartItem = {removeCartItem}
-              />
-            );
-          })}
-
-          {/* Total Price */}
-          <div className = "mt-8 w-full flex flex-col justify-end items-end">
-            <h1 className = "text-xl font-medium text-end">Subtotal:
-              ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-            <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%):
-              ${vatAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-            <h1 className = "text-2xl font-bold text-end">Total price:
-              ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-            <Link
-              to = "/checkout"
-              className = "flex items-center justify-center"
-            >
-              <button
-                type = "button"
-                className = "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          {matchedItems.length === 0 ? (
+            // Render a message if the cart is empty
+            <div className = "text-center my-10">
+              <h2 className = "text-lg font-semibold text-gray-600">Please add products to your cart</h2>
+              <Link
+                to = "/products"
+                className = "text-blue-600 hover:underline"
               >
-                Check out
-              </button>
-            </Link>
-          </div>
+                Go to Products
+              </Link>
+            </div>
+          ) : (
+            // Render the cart items if present
+            matchedItems.map((item) => {
+              const cartData = cartItem.find((cart) => cart.id === item._id.toString());
+              return (
+                <CartItem
+                  key = {item._id}
+                  item = {item}
+                  cartData = {cartData}
+                  updateCartItem = {updateCartItem}
+                  removeCartItem = {removeCartItem}
+                />
+              );
+            })
+          )}
+
+          {matchedItems.length > 0 && (
+            // Render Total Price and Checkout Button only if items exist
+            <div className = "mt-8 w-full flex flex-col justify-end items-end">
+              <h1 className = "text-xl font-medium text-end">Subtotal:
+                ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              <h1 className = "text-xl font-medium text-end">VAT (${VAT_RATE * 100}%):
+                ${vatAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              <h1 className = "text-2xl font-bold text-end">Total price:
+                ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+              <Link
+                to = "/checkout"
+                className = "flex items-center justify-center"
+              >
+                <button
+                  type = "button"
+                  className = "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-28 py-2.5 text-center mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Check out
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
